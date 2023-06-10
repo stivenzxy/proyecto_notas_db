@@ -56,4 +56,4 @@ ALTER TABLE calificaciones ADD CONSTRAINT pk_calificaciones PRIMARY KEY(cod_cal,
 ALTER TABLE calificaciones ADD CONSTRAINT fk_estudiantes_cal FOREIGN KEY (cod_est) REFERENCES estudiantes(cod_est);
 ALTER TABLE calificaciones ADD CONSTRAINT fk_cursos_cal FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso);
 ALTER TABLE calificaciones ADD CONSTRAINT fk_inscripciones_cal FOREIGN KEY (periodo,anio) REFERENCES inscripciones(periodo,anio);
-/*ALTER TABLE calificaciones ADD CONSTRAINT fk_notas_cal FOREIGN KEY (nota) REFERENCES notas(nota);*/
+ALTER TABLE calificaciones ADD CONSTRAINT fk_notas_cal FOREIGN KEY (nota) REFERENCES notas(nota);
