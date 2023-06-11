@@ -7,8 +7,8 @@ CREATE TABLE estudiantes(
 	cod_est INT PRIMARY KEY NOT NULL, CHECK(cod_estudiante>=0),
 	nomb1_est VARCHAR(50) NOT NULL,
 	nomb2_est VARCHAR(50) NOT NULL,
-	ape_paterno_est VARCHAR(50) NOT NULL,
-	ape_materno_est VARCHAR(50) NOT NULL
+	ape_paterno VARCHAR(50) NOT NULL,
+	ape_materno VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE inscripciones(
@@ -46,3 +46,9 @@ ALTER TABLE calificaciones ADD CONSTRAINT fk_estudiantes_cal FOREIGN KEY (cod_es
 ALTER TABLE calificaciones ADD CONSTRAINT fk_cursos_cal FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso);
 ALTER TABLE calificaciones ADD CONSTRAINT fk_inscripciones_cal FOREIGN KEY (periodo,anio) REFERENCES inscripciones(periodo,anio);
 ALTER TABLE calificaciones ADD CONSTRAINT fk_notas_cal FOREIGN KEY (nota) REFERENCES notas(nota);
+
+COPY estudiantes(cod_est,nomb1_est,nomb2_est,ape_paterno,ape_materno) FROM '/tmp/estudiantes.csv' DELIMITER ',' CSV HEADER;
+COPY cursos(cod_curso,nomb_curso) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
+COPY inscripciones(cod_curso,cod_est,periodo,anio) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
+
+
