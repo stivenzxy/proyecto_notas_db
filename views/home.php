@@ -7,6 +7,6 @@
     <title>Inicio</title>
 </head>
 <body>
-    
+    <p>Hola a todos!, este es el proyecto de bases de datos</p>
 </body>
 </html>
