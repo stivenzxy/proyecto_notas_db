@@ -72,18 +72,41 @@ main {
 main h1 {
     font-size: 1.7rem;
     color: #000000;
-    text-align: center;
+    padding: 1rem;
+    text-align: justify;
     margin: 1rem 0;
 }
 
 main p{
     font-size: 1.5rem;
+    max-width: 1200px;
     color: #000000;
-    text-align: center;
+    text-align: justify;
+    padding: 1rem;
     margin: 1rem 0;
 }
 
-main img {
+.image {
+    position: relative;
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-13px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+
+.image img {
     height: 60vh;
 }
 
@@ -116,7 +139,7 @@ footer a {
     }
 
     .drawer {
-        display: block;
+        display: block; /*muestra la hamburguesa para acceder al menu*/
     }
 
     nav h1 {
@@ -129,7 +152,7 @@ footer a {
         height: 100vh;
         background-color: #4f4aaf;
         top: 10vh;
-        left: -100%;
+        left: -100%; /*oculta el menu*/
         text-align: left;
         transition: all .5s;
         display: flex;
@@ -146,7 +169,15 @@ footer a {
     }
 
     #ckbox:checked ~ .menu-box{
-        left: 0;
+        left: 0; /*habilita el check del menu (tres lineas)*/
+    }
+
+    main h1 {
+        text-align: center;
+    }
+
+    main p {
+        padding: 1rem;
     }
 
     .image {
