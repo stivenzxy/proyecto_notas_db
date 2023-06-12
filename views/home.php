@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-</head>
-<body>
-    <p>Hola a todos!, este es el proyecto de bases de datos</p>
-</body>
-</html>
+<?php require('./layout/header.php')?>    
+    <main>
+        <div class="content">
+            <h1>Bienvenido a su gestor de notas personal!</h1>
+            <p>En este aplicativo puede ver sus cursos correspondientes, adicionar estudiantes a dichos cursos, agregar notas, modificar notas y asi mismo generar un reporte de notas clasificado por curso en el que observará cada nota con su respectivo porcentaje y el total de las notas parciales.
+            </p>
+        </div>
+
+        <div class="image">
+            <img src="./resources/FormProyect.png" alt="">
+        </div>
+    </main>
+
+<?php require('./layout/footer.php') ?>

@@ -1,0 +1,163 @@
+* {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: rgb(79, 61, 218);
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: normal;
+    padding-left: 2rem;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    border-right: solid .1rem white;
+}
+
+.menu-box li a {
+    color: #fff;
+    font-size: 1rem;
+    padding: .8rem 1rem;
+    text-transform: uppercase;
+    display: flex;
+}
+
+nav ul li:last-child{
+    border-right: none;
+}
+
+.menu-box ul li a:hover {
+    background-color:rgb(170, 127, 255);
+    transition: all .3s;
+}
+
+.drawer {
+    color: #fff;
+    float: left;
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 2rem;
+    display: none;
+}
+
+#ckbox {
+    display: none;
+}
+
+main {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+}
+
+main h1 {
+    font-size: 1.7rem;
+    color: #000000;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+main p{
+    font-size: 1.5rem;
+    color: #000000;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+main img {
+    height: 60vh;
+}
+
+footer {
+    /*flex: 0 0 auto;*/
+    color: #ffff;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(22, 115, 125, 0.871);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25vh;
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.footer-left,
+.footer-right {
+    flex: 1;
+}
+
+@media(max-width:1020px){
+    nav {
+        justify-content: flex-start;
+    }
+
+    .drawer {
+        display: block;
+    }
+
+    nav h1 {
+        margin-left: 1rem;
+    }
+
+    ul {
+        position: fixed;
+        width: 50%;
+        height: 100vh;
+        background-color: #4f4aaf;
+        top: 10vh;
+        left: -100%;
+        text-align: left;
+        transition: all .5s;
+        display: flex;
+        flex-direction: column;
+        align-content: stretch;
+    }
+
+    nav ul li {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        padding-left: 2rem;
+        border-bottom: solid .1rem wheat;
+    }
+
+    #ckbox:checked ~ .menu-box{
+        left: 0;
+    }
+
+    .image {
+        display: none;
+    }
+}
+
+@media(max-width:600px) {
+    footer {
+        flex-direction: column;
+        display: flex;
+        height: auto;
+    }
+}
