@@ -1,2 +1,2 @@
 <?php
-include 'views/home.php';
+include 'home.php';

@@ -43,11 +43,6 @@ nav ul li:last-child{
     border-right: none;
 }
 
-.menu-box ul li a:hover {
-    background-color:rgb(170, 127, 255);
-    transition: all .3s;
-}
-
 .drawer {
     color: #fff;
     float: left;
@@ -77,6 +72,12 @@ main h1 {
     margin: 1rem 0;
 }
 
+main h2 {
+    color: #000000;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
 main p{
     font-size: 1.5rem;
     max-width: 1200px;
@@ -89,7 +90,7 @@ main p{
 .image {
     position: relative;
     animation-name: floating;
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
@@ -183,12 +184,141 @@ footer a {
     .image {
         display: none;
     }
-}
 
-@media(max-width:600px) {
     footer {
         flex-direction: column;
         display: flex;
         height: auto;
+    }
+}
+
+/*@media(max-width:600px) {
+    footer {
+        flex-direction: column;
+        display: flex;
+        height: auto;
+    }
+}*/
+
+/* CSS CORRESPONDIENTE A CURSOS.PHP */
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    padding: 25px 30px;
+    background: #FFFFFF;
+    box-shadow: 0 5px 10px rgb(78, 78, 78);
+}
+
+.container .title {
+    font-size: 35px;
+    color: #202020;
+    position: relative;
+}
+
+.container .title::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(to right,#58b9ff,#125ef5);
+}
+
+.container form .cursos-details {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+form .cursos-details .input-box {
+    margin: 20px 0 10px 0;
+    margin-bottom: 20px;
+    width: calc(100% / 2);
+}
+
+.cursos-details .input-box .details {
+    font-weight: bold;
+    padding-right: 40px;
+}
+
+.cursos-details .cursos-selector {
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.cursos-details .radio-container {
+    margin: 10px 0 10px 0;
+}
+
+form button{
+   height: 40px;
+   width: 100%;
+   outline: none;
+   border: none;
+   color: #FFFFFF;
+   cursor: pointer;
+   border-radius: 1em;
+   font-size: 18px;
+   margin-top: 20px;
+   background-color: rgb(79, 61, 218);
+}
+
+form button:hover {
+    background-color: rgba(71, 121, 248, 0.871);
+}
+
+@media (max-width: 1800px) {
+    .container {
+        max-width: 70%;
+        max-height: 90%;
+    }
+    
+    .container .title{
+        position:static;
+    }
+
+    .container .title::before {
+        display: none;
+    }
+
+    form .cursos-details .input-box {
+        margin-bottom: 15px;
+        width: 70%;
+    }
+    .container form .cursos-details {
+        max-height: 160px;
+        overflow-y: scroll;
+    }
+    
+    .cursos-details::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header h1{
+       font-size: 25px;
+    }
+
+    .container {
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .container form .cursos-details {
+        max-height: 160px;
+        overflow-y: scroll;
+    }
+
+   .cursos-details .cursos-selector {
+        padding-right: 300px;
+    }
+
+    .cursos-details .input-box .details {
+        padding-right: 200px;
     }
 }
