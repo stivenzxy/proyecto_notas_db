@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e562395e64.js" crossorigin="anonymous"></script>
-    <script src="./js/routing.js"></script>
 </head>
 <body>
     <div class="contenedor">
@@ -21,10 +20,10 @@
             </label>
             <h1>Gestor de notas parciales</h1>
             <ul class="menu-box">
-                <li><a href="javascript:void(0)" onclick="redireccionarInicio()"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
-                <li><a href="javascript:void(0)" onclick="redireccionarCursos()"><i class="fa fa-list-check fa-fw"></i>Cursos</a></li>
-                <li><a href="javascript:void(0)"><i class="fa fa-pen-to-square fa-fw"></i>Editar Notas</a></li>
-                <li><a href="javascript:void(0)"><i class="fa fa-file-pdf fa-fw"></i>Reporte de notas</a></li>
+                <li><a href="home.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
+                <li><a href="cursos.php"><i class="fa fa-list-check fa-fw"></i>Cursos</a></li>
+                <li><a href="#"><i class="fa fa-pen-to-square fa-fw"></i>Editar Notas</a></li>
+                <li><a href="#"><i class="fa fa-file-pdf fa-fw"></i>Reporte de notas</a></li>
             </ul>
         </nav>
     </header>
