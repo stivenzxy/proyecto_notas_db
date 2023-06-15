@@ -1,5 +1,4 @@
 <?php
-
 require('connection.php');
 
 class CursosModel {
@@ -25,7 +24,5 @@ class CursosModel {
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
     }
-
 }
