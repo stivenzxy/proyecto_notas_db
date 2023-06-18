@@ -6,33 +6,72 @@ $controller = new CursosController();
 session_start();
 $estudiantes=$_SESSION['estudiantes'];
 /*var_dump($estudiantes)*/
+$contador = 1;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/tablaEstudiantes.css">
+    <link rel="shortcut icon" href="../resources/listadoEstudiantes.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e562395e64.js" crossorigin="anonymous"></script>
     <title>Estudiantes inscritos</title>
 </head>
+
 <body>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($estudiantes as $estudiante) { ?>
-            <tr>    
-                <td><?php echo $estudiante['cod_est'];?></td>
-                <td><?php echo $estudiante['nombre'];?></td>
-            </tr>  
-        <?php } ?>
-    </tbody>
-    </table>
-   
-    
+    <div class="container">
+        <div class="table-header">
+            <h2>Estudiantes</h2>
+            <button type="submit" id="header-button">Añadir Estudiante</button>
+            <div class="input-search">
+                <input type="search" placeholder="Buscar"/>
+                <i class="fa fa-search" id="search"></i>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($estudiantes as $estudiante) { ?>
+                <tr>
+                    <td><?php echo $contador++; ?></td>
+                    <td><?php echo $estudiante['cod_est'];?></td>
+                    <td><?php echo $estudiante['nombre'];?></td>
+                    <td>
+                        <button class="delete-button" data-cod_estudiante="<?php echo $estudiante['cod_est']; ?>">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <section class="modal">
+            <div class="modal-container">
+            <img src="../resources/AddStudentModal.svg" class="modal-image">
+            <div class="modal-form-container">
+                <form action="post" id="form-addStudent">
+                    <h2 class="modal-title">Agregar Estudiante</h2>
+                    <input type="text" name="cod_estudiante" placeholder="Código de Estudiante" required>
+                    <input type="text" name="nombre_estudiante" placeholder="Nombre del Estudiante" required><br>
+                    <button type="submit" id="addStudentButton">Agregar</button>
+                </form>
+                <a href="#" class="modal-close">Cerrar</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="module" src="../js/agregarEstudiante.js"></script>
 </body>
+
 </html>

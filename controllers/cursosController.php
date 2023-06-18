@@ -12,22 +12,15 @@ class CursosController {
             $nomb_curso = $_POST['cursos'];
             $anio = $_POST['anio'];
             $periodo = $_POST['periodo'];
-            /*$periodo1 = $_POST['periodo1'];
-            $periodo2 = $_POST['periodo2'];*/
-
-            /*var_dump($nomb_curso);
-            var_dump($anio);
-            var_dump($periodo);*/
+        
             $this->estudiantes = $this->cursosModel->QueryListadoEstudiantes($nomb_curso,$anio,$periodo);
            session_start();
            $_SESSION['estudiantes']=$this->estudiantes;
-            //var_dump($this->estudiantes);
+
             if (count($this->estudiantes) > 0) {
-                /*echo json_encode(array('success'=>1));*/
-                header('Location: ../views/tablaEstudiantes.php');
+                echo json_encode(array('success'=>1));
             } else {
-                /*echo json_encode(array('success'=>0));*/
-                header('Location: ../views/NoExistsInDB.php');
+                echo json_encode(array('success'=>0));
             }
         }
     }

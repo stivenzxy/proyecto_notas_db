@@ -288,6 +288,7 @@ form button:hover {
         margin-bottom: 15px;
         width: 70%;
     }
+    
     .container form .cursos-details {
         max-height: 160px;
         overflow-y: scroll;

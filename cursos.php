@@ -12,15 +12,15 @@
 				</select>
 				<div class="input-box">
 					<span class="details">Año:</span>
-					<input type="number" id="anio" name="anio" placeholder="año">
+					<input type="number" id="anio" name="anio" placeholder="año" required>
 				</div>
 				<div class="radio-container">
 					<h4>Periodo: </h4>
-  					<input type="radio" id="periodo1" name="periodo" value="1">
+  					<input type="radio" id="periodo1" name="periodo" value="1" required>
   					<label for="periodo1" class="radio-custom">Periodo I</label>
 				</div>
 				<div class="radio-container">
-  					<input type="radio" id="periodo2" name="periodo" value="2">
+  					<input type="radio" id="periodo2" name="periodo" value="2" required>
   					<label for="periodo2" class="radio-custom">Periodo II</label>
 				</div>
 					<button type="submit" id="button">Ver listado de estudiantes</button>
@@ -29,4 +29,5 @@
 		</form>
 	</div>
 </main>
+<script type="module" src="./js/controllerCursos.js"></script>
 <?php require('./layout/footer.php')?>

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e562395e64.js" crossorigin="anonymous"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.css">
 </head>
 <body>
     <div class="contenedor">
