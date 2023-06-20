@@ -33,6 +33,25 @@ body {
     margin-bottom: 15px;
 }
 
+.table-header #back-button {
+    outline: none;
+    border: none;
+    color: #ffffff;
+    background-color: rgba(255, 173, 8, 0.871);
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.table-header #back-button:hover {
+    color: rgba(255, 173, 8, 0.871);
+    background-color: #f9f0c6;
+}
+
+
 .table-header #header-button {
     outline: none;
     border: none;
@@ -43,7 +62,14 @@ body {
     text-transform: uppercase;
     padding: 10px 30px;
     cursor: pointer;
+    transition: background-color .3s;
 }
+
+.table-header #header-button:hover {
+    color: rgba(22, 115, 125, 0.871);
+    background-color: #caffebf4;
+}
+
 
 .container .delete-button {
     outline: none;
