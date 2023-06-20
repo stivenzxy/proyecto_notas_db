@@ -27,9 +27,11 @@ class EstudiantesController {
             $apellido2 = isset($separarNombre[3]) ? $separarNombre[3] : "";
 
             $this->insert = $this->cursosModel->InsertarEstudiantes($cod_est,$nombre1,$nombre2,$apellido1,$apellido2);
-
+            
             if ($this->insert) {
                 $this->cursosModel->AgregarInscripcion($cod_est,$nomb_curso,$periodo,$anio);
+                $nuevosEstudiantes = $this->cursosModel->VerEstudiantes($nomb_curso,$anio,$periodo);
+                $_SESSION['nuevosEstudiantes']=$nuevosEstudiantes;
                 echo json_encode(array('success' => 1));
             } else {
                 echo json_encode(array('success' => 0));

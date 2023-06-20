@@ -12,8 +12,64 @@ closeModal.addEventListener("click", (e) => {
   modal.classList.remove("modal--show");
 });
 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-addStudent");
+
+  /////////////////////////////////////////////
+
+  function actualizarTablaEstudiantes() {
+    const tablaEstudiantes = document.getElementById("tablaEstudiantes");
+
+    // Realiza la solicitud Ajax para obtener los nuevos datos de la tabla
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          const nuevosDatos = xhr.responseText;
+          //console.log(nuevosDatos);
+          tablaEstudiantes.innerHTML = nuevosDatos;
+        } else {
+          console.error("Error:", xhr.status);
+        }
+      }
+    };
+
+    xhr.open("GET", "../controllers/actualizarTabla.php", true); // Solicita la informacion del servidor a traves del archivo actualizarTabla.php
+    xhr.send();
+  }
+
+  ///////////////////////////////////////////
+
+  function InsercionExitosa() {
+    Swal.fire({
+      title: "Insercion Exitosa!",
+      text: "El estudiante fue agregado correctamente",
+      icon: "success",
+      allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
+      allowEscapeKey: false, // si das esc no se sale de la alerta
+      showConfirmButton: true,
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#86FFC7",
+    }).then(() => {
+      actualizarTablaEstudiantes();
+    });
+  }
+
+  function InsercionFallida() {
+    Swal.fire({
+      title: "Insercion Fallida!",
+      text: "El codigo de estudiante ingresado ya existe en la base de datos",
+      icon: "error",
+      allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
+      allowEscapeKey: false, // si das esc no se sale de la alerta
+      showConfirmButton: true,
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "red",
+    });
+  }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -37,33 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    function InsercionExitosa() {
-      Swal.fire({
-        title: "Insercion Exitosa!",
-        text: "El estudiante fue agregado correctamente",
-        icon: "success",
-        allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
-        allowEscapeKey: false, // si das esc no se sale de la alerta
-        showConfirmButton: true,
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#86FFC7",
-      });
-    }
-
-    function InsercionFallida() {
-      Swal.fire({
-        title: "Insercion Fallida!",
-        text: "El codigo de estudiante ingresado ya existe en la base de datos",
-        icon: "error",
-        allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
-        allowEscapeKey: false, // si das esc no se sale de la alerta
-        showConfirmButton: true,
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "red",
-      });
-    }
-
-    xhr.open("POST", "../controllers/estudiantesInstance.php", true);
+    xhr.open("POST", "../controllers/estudiantesInstance.php", true); //Con post los datos se envian sin ser parte del cuerpo de la URL
     xhr.send(formDataEst);
   });
 });

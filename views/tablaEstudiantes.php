@@ -49,7 +49,7 @@ $contador = 1;
                     <th>Acción</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tablaEstudiantes">
                 <?php foreach ($estudiantes as $estudiante) { ?>
                 <tr>
                     <td><?php echo $contador++; ?></td>
@@ -57,7 +57,7 @@ $contador = 1;
                     <td><?php echo $estudiante['nombre'];?></td>
                     <td>
                         <button class="delete-button" data-cod_estudiante="<?php echo $estudiante['cod_est']; ?>">
-                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid fa-trash"></i> <!--Cuando haga cambios aqui debo cambiar Actualizar tabla tambien-->
                         </button>
                     </td>
                 </tr>
