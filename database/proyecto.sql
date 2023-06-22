@@ -31,7 +31,7 @@ CREATE TABLE inscripciones(
 ALTER TABLE inscripciones ADD CONSTRAINT pk_inscrip PRIMARY KEY(cod_curso,cod_est,periodo,anio);
 ALTER TABLE inscripciones ADD CONSTRAINT fk_cursos FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE inscripciones ADD CONSTRAINT fk_estudiantes FOREIGN KEY (cod_est) REFERENCES estudiantes(cod_est) ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE cursos ADD CONSTRAINT fk_cod_usr FOREIGN KEY(codigo_usr) REFERENCES usuarios(codigo_usr);
+ALTER TABLE cursos ADD CONSTRAINT fk_cod_usr FOREIGN KEY(codigo_usr) REFERENCES usuarios(codigo_usr) on DELETE RESTRICT ON UPDATE CASCADE;
 
 CREATE TABLE notas(
 	nota INT PRIMARY KEY NOT NULL, CHECK(nota>=0),
@@ -61,12 +61,6 @@ COPY estudiantes(cod_est,nomb1_est,nomb2_est,ape_paterno,ape_materno) FROM '/tmp
 COPY cursos(cod_curso,nomb_curso) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
 COPY inscripciones(cod_curso,cod_est,anio,periodo) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
 
-
-
-
-insert into notas values (1,'calificacion1',30,1,603401);
-insert into calificaciones values (1,5,'2023-05-13', 603401,160003440,2023,1,1);
-delete from inscripciones where cod_est='160003440';
 
 CREATE extension pgcrypto;
 
