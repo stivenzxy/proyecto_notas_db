@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    xhr.open("POST", "../controllers/estudiantesInstance.php", true); //Con post los datos se envian sin ser parte del cuerpo de la URL
+    xhr.open("POST", "../controllers/estudiantesController.php", true); //Con post los datos se envian sin ser parte del cuerpo de la URL
     xhr.send(formDataEst);
   });
 });

@@ -3,7 +3,7 @@
 <div class="container">
         <div class="subtitle"><h2>Registro de notas - Fecha: </h2></div>
 		<div class="title">Cursos de docente</div>
-		<form method="post" id="form-cursos" action="controllers/cursosInstance.php">
+		<form method="post" id="form-cursos" action="controllers/inscripcionesController.php">
 			<div class="cursos-details">
 				<label for="cursos" class="cursos-selector">Cursos:</label>
 				<select id="cursos" name="cursos">
@@ -29,5 +29,5 @@
 		</form>
 	</div>
 </main>
-<script type="module" src="./js/controllerCursos.js"></script>
+<script type="module" src="./js/InscripcionController.js"></script>
 <?php require('./layout/footer.php')?>

@@ -1,11 +1,7 @@
 <?php
-require_once('../controllers/cursosController.php');
-
-//$controller = new CursosController();
-/*$controller->mostrarListado();*/
 session_start();
-$estudiantes = $_SESSION['estudiantes'];
-/*var_dump($estudiantes)*/
+$estudiantesInscritos = $_SESSION['estudiantesInscritos'];
+$nomb_curso=$_SESSION['cursos'];
 $contador = 1;
 ?>
 
@@ -27,16 +23,19 @@ $contador = 1;
 <body>
     <div class="container">
         <div class="table-header">
-            <h2>Estudiantes</h2>
+            <div class="header-container">
+                <h2>Estudiantes</h2>
+                <h4>Curso: <?php echo $nomb_curso ?></h4>
+            </div>
             <button onclick="goBack()" id="back-button">Volver</button>
             <script>
-                function goBack() {
-                    history.back();
-                }
+            function goBack() {
+                history.back();
+            }
             </script>
             <button type="submit" id="header-button">Añadir Estudiante</button>
             <div class="input-search">
-                <input type="search" placeholder="Buscar"/>
+                <input type="search" placeholder="Buscar" />
                 <i class="fa fa-search" id="search"></i>
             </div>
         </div>
@@ -50,14 +49,15 @@ $contador = 1;
                 </tr>
             </thead>
             <tbody id="tablaEstudiantes">
-                <?php foreach ($estudiantes as $estudiante) { ?>
+                <?php foreach ($estudiantesInscritos as $estudianteInscrito) { ?>
                 <tr>
                     <td><?php echo $contador++; ?></td>
-                    <td><?php echo $estudiante['cod_est'];?></td>
-                    <td><?php echo $estudiante['nombre'];?></td>
+                    <td><?php echo $estudianteInscrito['cod_est'];?></td>
+                    <td><?php echo $estudianteInscrito['nombre'];?></td>
                     <td>
-                        <button class="delete-button" data-cod_estudiante="<?php echo $estudiante['cod_est']; ?>">
-                            <i class="fa-solid fa-trash"></i> <!--Cuando haga cambios aqui debo cambiar Actualizar tabla tambien-->
+                        <button class="delete-button" data-cod_estudiante="<?php echo $estudianteInscrito['cod_est']; ?>">
+                            <i class="fa-solid fa-trash"></i>
+                            <!--Cuando haga cambios aqui debo cambiar Actualizar tabla tambien-->
                         </button>
                     </td>
                 </tr>
@@ -66,21 +66,22 @@ $contador = 1;
         </table>
         <section class="modal">
             <div class="modal-container">
-            <img src="../resources/AddStudentModal.svg" class="modal-image">
-            <div class="modal-form-container">
-                <form method="post" id="form-addStudent" action="../controllers/estudiantesInstance.php">
-                    <h2 class="modal-title">Agregar Estudiante</h2>
-                    <input type="number" id="cod_est" name="cod_est" placeholder="Código de Estudiante" required>
-                    <input type="text" id="nomb_est" name="nomb_est" placeholder="Nombre del Estudiante" required><br>
-                    <button type="submit" id="addStudentButton">Agregar</button>
-                </form>
-                <a href="#" class="modal-close">Cerrar</a>
+                <img src="../resources/AddStudentModal.svg" class="modal-image">
+                <div class="modal-form-container">
+                    <form method="post" id="form-addStudent" action="../controllers/estudiantesController.php">
+                        <h2 class="modal-title">Agregar Estudiante</h2>
+                        <input type="number" id="cod_est" name="cod_est" placeholder="Código de Estudiante" required>
+                        <input type="text" id="nomb_est" name="nomb_est" placeholder="Nombre del Estudiante"
+                            required><br>
+                        <button type="submit" id="addStudentButton">Agregar</button>
+                    </form>
+                    <a href="#" class="modal-close">Cerrar</a>
                 </div>
             </div>
         </section>
         <div class="alerta"></div>
     </div>
-    <script type="module" src="../js/agregarEstudiante.js"></script>
+    <script type="module" src="../js/estudiantesController.js"></script>
 </body>
 
 </html>
