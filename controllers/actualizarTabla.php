@@ -2,7 +2,7 @@
 require_once('./estudiantesController.php');
 session_start();
 $nuevosEstudiantes = $_SESSION['nuevosEstudiantes'];
-$contador = 1;
+$contador = 1; 
 
 $htmlTabla = '';
 foreach ($nuevosEstudiantes as $estudiante) {

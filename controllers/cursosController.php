@@ -5,7 +5,7 @@ class CursosController {
     public $estudiantes;
     public function __construct(){
         $this->cursosModel = new CursosModel();
-    }
+    } 
 
     public function mostrarListado(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){ //si el form se envio mediante post, entonces {...}

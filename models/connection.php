@@ -2,11 +2,11 @@
 
 class Connection {
     static public function getConnection(){
-        $host = "localhost";
+        $host = "database-notas.ckq1ztccobtx.us-east-2.rds.amazonaws.com";
         $port = "5432";
-        $dbname = "notas_parciales";
-        $username = "stiven";
-        $password = "17347251";
+        $dbname = "database_notasest8";
+        $username = "rediah10k";
+        $password = "pg54321*";
         
         try {
             $conn = new PDO("pgsql:host=$host;port=$port; dbname=$dbname", $username, $password);
