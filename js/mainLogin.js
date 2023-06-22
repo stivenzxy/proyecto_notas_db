@@ -10,7 +10,7 @@ window.addEventListener('load',() => {
         let datos = new FormData();
         datos.append("user", usuario.value);
         datos.append("pass", password.value);
-        fetch('controllers/loginFormAccess.php',{
+        fetch('controllers/usuariosController.php',{
             method: 'POST',
             body: datos
         }).then(Response => Response.text())
@@ -19,10 +19,9 @@ window.addEventListener('load',() => {
             const responseJson = JSON.parse(responseText);
             const { success } = responseJson;
             if(success === 1){
-                location.href = 'views/adminView.php';
-            } else if(success === 2){
-                location.href = 'views/clientView.php';
-            } else {
+                location.href = 'views/home.php';
+             }
+            else {
                 SessionError();
             }
         })

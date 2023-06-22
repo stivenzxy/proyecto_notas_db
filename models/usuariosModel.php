@@ -5,9 +5,9 @@ class User{
   public function __construct(){
     $this->connect = Connection::getConnection();
   }
-  public function findByUsernameAndPassword($username, $password){
+  public function findByUsernameAndPassword($code, $password){
     //  $query = "SELECT * FROM users WHERE username=:$username AND pasword=:$password";
-    $query = "SELECT * FROM users WHERE username = ? AND pasword = ?";
+    $query = "SELECT authenticate( code , password )";
     
     //statement
     $stmt = $this->connect->prepare($query);

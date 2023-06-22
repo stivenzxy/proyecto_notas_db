@@ -9,24 +9,19 @@ class LoginController{
     public function login(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['user']; 
-            $password = md5($_POST['pass']);
+            $password = $_POST['pass'];
 
             $user = $this->userModel->findByUsernameAndPassword($username, $password);
-            $verifyRole = $this->userModel->getRolById($username);
-
-            if ($user && count($user) > 0) {
-               // session_start();
-                $_SESSION['user'] = $user; // almacena la sesion del usuario actual
-                if($verifyRole == 1){ 
+            
+            if ($user !== false) {
+                // El resultado no está vacío
+                $value = $result['authenticate'];
+            
+                if ($value === 'v') {
                     echo json_encode(array('success'=>1));
-                    /*header("Location: ../views/adminView.php");*/
-                } else if($verifyRole == 2){
+                } elseif ($value === 'f') {
                     echo json_encode(array('success'=>2));
-                    /*header("Location: ../views/clientView.php");*/
-                }
-            } else {
-                echo json_encode(array('success'=>3));
-            }
+                }        
         }
     }
     $formAction = new LoginController();
