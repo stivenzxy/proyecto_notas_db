@@ -1,12 +1,16 @@
 <?php
-
-require('../models/cursosModel.php');
-
-class EstudiantesController {
-    private $cursosModel;
+require('../models/connection.php');
+require('../models/inscripcionesModel.php');
+require('../models/estudiantesModel.php');
+class EstudiantesController extends Connection {
+    private $inscripcionesModel;
+    private $estudiantesModel;
+    public $connect;
     private $insert;
     public function __construct(){
-        $this->cursosModel = new CursosModel();
+        $this->inscripcionesModel = new InscripcionesModel();
+        $this->estudiantesModel = new EstudiantesModel();
+        $this->connect = $this->getConnection();
     }
 
     public function AgregarEstudiante(){
@@ -26,12 +30,12 @@ class EstudiantesController {
             $apellido1 = isset($separarNombre[2]) ? $separarNombre[2] : "";
             $apellido2 = isset($separarNombre[3]) ? $separarNombre[3] : "";
 
-            $this->insert = $this->cursosModel->InsertarEstudiantes($cod_est,$nombre1,$nombre2,$apellido1,$apellido2);
+            $this->insert = $this->estudiantesModel->InsertarEstudiantes($cod_est,$nombre1,$nombre2,$apellido1,$apellido2,$this->connect);
             
             if ($this->insert) {
-                $this->cursosModel->AgregarInscripcion($cod_est,$nomb_curso,$periodo,$anio);
-                $nuevosEstudiantes = $this->cursosModel->VerEstudiantes($nomb_curso,$anio,$periodo);
-                $_SESSION['nuevosEstudiantes']=$nuevosEstudiantes;
+                $this->inscripcionesModel->AgregarEstudianteInscripcion($cod_est,$nomb_curso,$periodo,$anio,$this->connect);
+                $nuevosEstudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($nomb_curso,$anio,$periodo,$this->connect);
+                $_SESSION['nuevosEstudiantesInscritos']=$nuevosEstudiantesInscritos;
                 echo json_encode(array('success' => 1));
             } else {
                 echo json_encode(array('success' => 0));
@@ -39,3 +43,6 @@ class EstudiantesController {
         }
     }
 }
+
+$add = new EstudiantesController();
+$add->AgregarEstudiante();
