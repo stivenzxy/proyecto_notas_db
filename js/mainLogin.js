@@ -1,40 +1,34 @@
-window.addEventListener('load',() => {
-    let button = document.getElementById('loginForm');
-    let usuario = document.getElementById('user');
-    let password = document.getElementById('pass');
-    let alert = document.getElementById('alerta');
-
-    console.log(usuario);
-
-    function data(){
-        let datos = new FormData();
-        datos.append("user", usuario.value);
-        datos.append("pass", password.value);
-        fetch('controllers/usuariosController.php',{
-            method: 'POST',
-            body: datos
-        }).then(Response => Response.text())
-        .then(responseText => {
-            console.log(responseText);
-            const responseJson = JSON.parse(responseText);
-            const { success } = responseJson;
-            if(success === 1){
-                location.href = 'home.php';
-             }
-            else {
-                SessionError();
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("loginForm");
+  
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+  
+      const formData = new FormData(form);
+      const xhr = new XMLHttpRequest();
+  
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            console.log(xhr.responseText);
+            if (response.success === 1) {
+              window.location.href = "views/tablaEstudiantes.php";
+            } else {
+              SessionError();
             }
-        })
-        .catch(error => console.log(error));
-    }
-    //console.log(Response) 
-
-    function SessionError(){
+          } else {
+            console.error("Error:", xhr.status);
+          }
+        }
+      };
+  
+      function SessionError(){
         const Toast = Swal.mixin({
             toast: true,
             position: 'top',
             showConfirmButton: false,
-            timer: 1000,
+            timer: 2000,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -50,10 +44,9 @@ window.addEventListener('load',() => {
             window.location.reload();
         });
     }
-
-    button.addEventListener('submit',(e) => {
-        e.preventDefault();
-        data();
+  
+      xhr.open("POST", "../controllers/usuariosController.php", true);
+      xhr.send(formData);
     });
-    
-});
+  });
+  

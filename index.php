@@ -47,19 +47,21 @@ if(isset($_POST['iniciar_sesion'])){
 	<title>Login</title>
 	<link rel="stylesheet" href="css/login.css">
 	<link rel="shortcut icon" href="resources/login.ico" type="image/x-icon">
+	<script src="node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.css">
 	<script src="https://kit.fontawesome.com/e562395e64.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<form id="login" action="controllers/usuariosController.php" method="POST">
+	<form id="loginForm" action="controllers/usuariosController.php" method="post">
 		<div class="title">Iniciar Sesion</div>
 		<label>
 			<i class="fa-solid fa-user"></i>
-			<input type="number" name="code" placeholder="Introduce tu codigo" required>
+			<input type="number" name="code" min="0" max="999999999"placeholder="Introduce tu codigo" required>
 		</label>
 		<label>
 			<i class="fa-solid fa-lock"></i>
-			<input type="password" name="password" placeholder="Introduce tu contraseña">
+			<input type="password" name="pass" placeholder="Introduce tu contraseña">
 
         
 		</label>
@@ -73,10 +75,9 @@ if(isset($_POST['iniciar_sesion'])){
   			<a style="color: #E96BCC;" href="views/newUserView.php" class="link2">Registrate</a>
 		</div>
 		<br><br>
-		<div id="alerta"></div>
 
 	</form>
-
+	<script type="module" src="./js/mainLogin.js"></script>
 </body>
 
 </html>
