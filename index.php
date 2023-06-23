@@ -1,6 +1,6 @@
 
 <?php
-require "models/connection.php";
+/*require "models/connection.php";
 $connect = (new Connection())->getConnection();
 if(isset($_POST['iniciar_sesion'])){
 	session_start();
@@ -34,7 +34,7 @@ if(isset($_POST['iniciar_sesion'])){
 	
 }
 
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,7 @@ if(isset($_POST['iniciar_sesion'])){
 </head>
 
 <body>
-	<form id="login" action="index.php" method="POST">
+	<form id="login" action="controllers/usuariosController.php" method="POST">
 		<div class="title">Iniciar Sesion</div>
 		<label>
 			<i class="fa-solid fa-user"></i>
