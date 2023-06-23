@@ -1,4 +1,5 @@
 <?php
+
 require('../models/connection.php');
 require('../models/inscripcionesModel.php');
 class InscripcionesController extends Connection{
