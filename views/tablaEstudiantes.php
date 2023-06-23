@@ -1,7 +1,7 @@
 <?php
 session_start();
 $estudiantesInscritos = $_SESSION['estudiantesInscritos'];
-$nomb_curso=$_SESSION['cursos'];
+$nomb_curso = $_SESSION['cursos'];
 $contador = 1;
 ?>
 
@@ -52,10 +52,11 @@ $contador = 1;
                 <?php foreach ($estudiantesInscritos as $estudianteInscrito) { ?>
                 <tr>
                     <td><?php echo $contador++; ?></td>
-                    <td><?php echo $estudianteInscrito['cod_est'];?></td>
-                    <td><?php echo $estudianteInscrito['nombre'];?></td>
+                    <td><?php echo $estudianteInscrito['cod_est']; ?></td>
+                    <td><?php echo $estudianteInscrito['nombre']; ?></td>
                     <td>
-                        <button class="delete-button" data-cod_estudiante="<?php echo $estudianteInscrito['cod_est']; ?>">
+                        <button class="delete-button"
+                            data-cod_estudiante="<?php echo $estudianteInscrito['cod_est']; ?>">
                             <i class="fa-solid fa-trash"></i>
                             <!--Cuando haga cambios aqui debo cambiar Actualizar tabla tambien-->
                         </button>
@@ -66,16 +67,46 @@ $contador = 1;
         </table>
         <section class="modal">
             <div class="modal-container">
-                <img src="../resources/AddStudentModal.svg" class="modal-image">
+
+                <div class="addEstudianteExistente-container">
+                    <img src="../resources/AddExistStudent.svg" class="modal-image1">
+                    <form method="post" id="form-addExistingStudent" action="../controllers/estudiantesController.php">
+                        <h2 class="modal-title1">Agregar estudiante existente a la inscripcion</h2>
+                        <label for="listEstudiantes" class="listEstudiantes">Estudiantes disponibles: </label><br>
+                        <button type="button" value="false">Inscritos</button>
+                        <button type="button" value="true">No inscritos</button>
+                        <?php
+                            require_once("../controllers/estudiantesController.php");
+                            $class = new EstudiantesController();
+                            $estudiantesDisp = $class->mostrarEstudiantesExistentes();
+                            echo "<select>";
+                            foreach ($estudiantesDisp as $nombre) {
+                                echo "<option id='listEstudiantes' value='" . $nombre['nombre'] . "'>" . $nombre['nombre'] . "</option>";
+                            }
+                            echo "</select>";
+                        ?>
+                        <button type="submit" id="addStudentButton">
+                            <h2 class="textcontainer">Agregar</h2>
+                        </button>
+                        <input type="hidden" name="action" value="agregarEstudianteExistente">
+                    </form>
+                </div>
+
                 <div class="modal-form-container">
+                    <img src="../resources/AddStudentModal.svg" class="modal-image2">
                     <form method="post" id="form-addStudent" action="../controllers/estudiantesController.php">
-                        <h2 class="modal-title">Agregar Estudiante</h2>
+                        <h2 class="modal-title">Crear y agregar un nuevo estudiante</h2>
                         <input type="number" id="cod_est" name="cod_est" placeholder="Código de Estudiante" required>
                         <input type="text" id="nomb_est" name="nomb_est" placeholder="Nombre del Estudiante"
                             required><br>
-                        <button type="submit" id="addStudentButton">Agregar</button>
+                        <div class="buttonscontainer">
+                            <button type="submit" id="addStudentButton">
+                                <h2 class="textcontainer">Crear y Agregar</h2>
+                            </button>
+                            <input type="hidden" name="action" value="agregarNuevoEstudiante">
+                            <a href="#" class="modal-close">Cerrar</a>
+                        </div>
                     </form>
-                    <a href="#" class="modal-close">Cerrar</a>
                 </div>
             </div>
         </section>

@@ -1,5 +1,15 @@
 <?php 
 class EstudiantesModel {
+    public function obtenerNombreEstudiantes($connect) {
+        $query = "SELECT CONCAT(nomb1_est,' ',nomb2_est,' ',ape_paterno,' ',ape_materno) 
+                  AS nombre 
+                  FROM estudiantes ORDER BY nombre ASC";
+
+        $stmt = $connect->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function InsertarEstudiantes($cod_est,$nombre1,$nombre2,$apellido1,$apellido2,$connect){
         $verify = 'SELECT cod_est FROM estudiantes WHERE cod_est = ?';
         $vstmt = $connect->prepare($verify);

@@ -13,7 +13,24 @@ class EstudiantesController extends Connection {
         $this->connect = $this->getConnection();
     }
 
-    public function AgregarEstudiante(){
+    public function handleRequest() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $action = $_POST['action'] ?? '';
+            switch ($action) {
+                case 'agregarNuevoEstudiante':
+                    $this->agregarEstudiante();
+                    break;
+                case 'agregarEstudianteExistente':
+                    $this->agregarEstudianteExistente();
+                    break;
+                default:
+                    echo 'Acción inválida';
+                    break;
+            }
+        }
+    }
+
+    public function agregarEstudiante(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $cod_est = $_POST['cod_est'];
             $nomb_est = $_POST['nomb_est'];
@@ -42,7 +59,16 @@ class EstudiantesController extends Connection {
             }
         }
     }
+
+    public function agregarEstudianteExistente(){
+
+    }
+
+    public function mostrarEstudiantesExistentes() {
+        $estudiantesDisponibles = $this->estudiantesModel->obtenerNombreEstudiantes($this->connect);
+        return $estudiantesDisponibles;
+    }
 }
 
-$add = new EstudiantesController();
-$add->AgregarEstudiante();
+$retorno = new EstudiantesController();
+$retorno->handleRequest();
