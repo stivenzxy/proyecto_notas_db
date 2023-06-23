@@ -1,3 +1,42 @@
+
+<?php
+require "models/connection.php";
+$connect = (new Connection())->getConnection();
+if(isset($_POST['iniciar_sesion'])){
+	session_start();
+	$usuario = $_POST['code'];
+	$contrasena = $_POST['password'];
+
+	$query = 'SELECT authenticate(:user, :contrasena)';
+	
+
+	$stmt = $this->connect->prepare($query);
+	$stmt->bindParam(':user', $usuario);
+	$stmt->bindParam(':contrasena', $contrasena);
+	$stmt->execute();
+	$res = $stmt->fetch(PDO::FETCH_ASSOC);
+	
+	if ($res !== false) {
+		$value = $res['authenticate'];
+		var_dump($value);
+		
+		if ($value == 1) {
+			// El valor es "v"
+			$_SESSION['usuario'] = $usuario;
+		$_SESSION['id_usuario'] = $id_usuario;
+		header('Location: home.php');
+		} elseif ($value == 0) {
+			// El valor es "f"
+			echo "<script type=\"text/javascript\">alert(\"Usuario Errado o Contraseña Errada\");</script>";
+		}
+		
+	}
+	
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,19 +51,21 @@
 </head>
 
 <body>
-	<form method="post" id="loginForm" action="controllers/usuariosController.php">
+	<form id="login" action="index.php" method="POST">
 		<div class="title">Iniciar Sesion</div>
 		<label>
 			<i class="fa-solid fa-user"></i>
-			<input placeholder="nombre de usuario" type="text" id="user" name="user" required>
+			<input type="number" name="code" placeholder="Introduce tu codigo" required>
 		</label>
 		<label>
 			<i class="fa-solid fa-lock"></i>
-			<input placeholder="contraseña" type="password" id="pass" name="pass" required>
+			<input type="password" name="password" placeholder="Introduce tu contraseña">
+
+        
 		</label>
 		<a href="#" class="link">Olvidaste tu contraseña?</a>
 
-		<button type="submit" id="button">Login</button>
+		<button type="submit" id="" name="iniciar_sesion">Login</button>
 		<!--<p style="display: inline;">¿No tienes una cuenta?</p>
 		<a href="#" style="display: inline;" class="register">Registrate</a>-->
 		<div style="margin-top: 15px;" class="register">
@@ -35,7 +76,18 @@
 		<div id="alerta"></div>
 
 	</form>
-	<script type="module" src="assets/mainLogin.js"></script>
+
 </body>
 
 </html>
+
+
+
+  
+
+
+
+
+
+
+

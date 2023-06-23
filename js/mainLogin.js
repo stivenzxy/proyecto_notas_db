@@ -19,7 +19,7 @@ window.addEventListener('load',() => {
             const responseJson = JSON.parse(responseText);
             const { success } = responseJson;
             if(success === 1){
-                location.href = 'views/home.php';
+                location.href = 'home.php';
              }
             else {
                 SessionError();

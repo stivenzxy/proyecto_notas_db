@@ -75,7 +75,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION authenticate(cod INT, pass TEXT) 
-RETURNS BOOL AS $$
+RETURNS INT AS $$
 DECLARE
     cant INTEGER;
 BEGIN
@@ -83,9 +83,9 @@ BEGIN
 	= crypt(pass, passhash);
     
     IF (cant > 0) THEN
-        RETURN TRUE;
+        RETURN 1;
     ELSE
-        RETURN FALSE;
+        RETURN 0;
     END IF;
 END;
 $$ LANGUAGE plpgsql;

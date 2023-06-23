@@ -18,7 +18,7 @@ class User{
     $stmt->bindParam(2, $password);
     $stmt->execute(); // ejecuta la consulta
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); // obtiene la fila de un conjunto de resultados como un arreglo de arreglos
+    return $stmt->fetchAll(PDO::FETCH_OBJ); // obtiene la fila de un conjunto de resultados como un arreglo de arreglos
   }
 
   public function getRolById($username){
