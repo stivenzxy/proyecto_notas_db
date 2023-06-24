@@ -69,9 +69,9 @@ $contador = 1;
             <div class="modal-container">
 
                 <div class="addEstudianteExistente-container">
-                    <img src="../resources/AddExistStudent.svg" class="modal-image1">
+                    <img src="../resources/AddExistStudent.svg" class="modal-image">
                     <form method="post" id="form-addExistingStudent" action="../controllers/estudiantesController.php">
-                        <h2 class="modal-title1">Agregar estudiante existente a la inscripcion</h2>
+                        <h2 class="modal-title">Agregar estudiante existente a la inscripcion</h2>
                         <label for="listEstudiantes" class="listEstudiantes">Estudiantes disponibles: </label><br>
                         <?php
                             require_once("../controllers/estudiantesController.php");
@@ -87,23 +87,7 @@ $contador = 1;
                             <h2 class="textcontainer">Agregar</h2>
                         </button>
                         <input type="hidden" name="action" value="agregarEstudianteExistente">
-                    </form>
-                </div>
-
-                <div class="modal-form-container">
-                    <img src="../resources/AddStudentModal.svg" class="modal-image2">
-                    <form method="post" id="form-addStudent" action="../controllers/estudiantesController.php">
-                        <h2 class="modal-title">Crear y agregar un nuevo estudiante</h2>
-                        <input type="number" id="cod_est" name="cod_est" placeholder="Código de Estudiante" required>
-                        <input type="text" id="nomb_est" name="nomb_est" placeholder="Nombre del Estudiante"
-                            required><br>
-                        <div class="buttonscontainer">
-                            <button type="submit" id="addStudentButton">
-                                <h2 class="textcontainer">Crear y Agregar</h2>
-                            </button>
-                            <input type="hidden" name="action" value="agregarNuevoEstudiante">
-                            <a href="#" class="modal-close">Cerrar</a>
-                        </div>
+                        <a href="#" class="modal-close">Cerrar</a>
                     </form>
                 </div>
             </div>

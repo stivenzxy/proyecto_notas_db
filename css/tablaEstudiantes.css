@@ -209,7 +209,6 @@ tbody tr:hover {
     display: grid;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
     transform: var(--transform);
     transition: var(--transition);
 }
@@ -234,43 +233,20 @@ tbody tr:hover {
     padding: 3px;
 }
 
-.modal-title1 {
+.modal-title{
     font-size: 1.7em;
     text-align: left;
     margin-bottom: 5%;
 }
 
-.modal-image1 {
+.modal-image{
     max-height: 60%;
     max-width: 60%;
 }
 /**************************************/
 
-.modal-image2 {
-    max-width: 80%;
-}
-
-.modal-form-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.modal-form-container form {
-    flex-grow: 1;
-    margin-left: 2em;
-    align-items: center;
-}
-
-.modal-form-container form input {
-    font-size: 15px;
-    margin-top: 10px;
-}
-
-.buttonscontainer {
-    flex-direction: column;
-}
-
-.modal-form-container form #addStudentButton , .addEstudianteExistente-container form #addStudentButton{
+.addEstudianteExistente-container form #addStudentButton{
+    width: 40%;
     outline: none;
     font-weight: bold;
     border: none;
@@ -285,7 +261,7 @@ tbody tr:hover {
     transition: background-color .3s;
 }
 
-.modal-form-container form #addStudentButton:hover {
+.addEstudianteExistente-container form #addStudentButton:hover {
     color: rgb(61, 218, 137);
     background-color: #ffffff;
 }
@@ -308,6 +284,7 @@ tbody tr:hover {
     display: flex;
     font-weight: bold;
     margin-right: 11em;
+    cursor: pointer;
     justify-content: center;
     transition: background-color .3s;
 }

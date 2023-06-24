@@ -11,7 +11,7 @@
 				document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
             </script>
         </div>
-        <div class="title">Cursos de docente</div>
+        <div class="title">Inscripciones de docente</div>
         <form method="post" id="form-cursos" action="controllers/inscripcionesController.php">
             <div class="cursos-details">
                 <label for="cursos" class="cursos-selector">Cursos:</label>

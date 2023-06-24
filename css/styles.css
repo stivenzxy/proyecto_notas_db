@@ -134,7 +134,7 @@ footer a {
     flex: 1;
 }
 
-@media(max-width:1020px){
+@media(max-width:1060px){
     nav {
         justify-content: flex-start;
     }
@@ -190,15 +190,11 @@ footer a {
         display: flex;
         height: auto;
     }
-}
 
-/*@media(max-width:600px) {
-    footer {
-        flex-direction: column;
-        display: flex;
-        height: auto;
-    }
-}*/
+    .est-image {
+        display: none;
+     }
+}
 
 /* CSS CORRESPONDIENTE A CURSOS.PHP */
 
@@ -261,6 +257,7 @@ form button{
    color: #FFFFFF;
    cursor: pointer;
    border-radius: 1em;
+   font-weight: bold;
    font-size: 18px;
    margin-top: 20px;
    background-color: rgb(79, 61, 218);
@@ -297,6 +294,10 @@ form button:hover {
     .cursos-details::-webkit-scrollbar {
         width: 0;
     }
+
+    .estudiante-form-container .input-box input {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
@@ -322,4 +323,59 @@ form button:hover {
     .cursos-details .input-box .details {
         padding-right: 200px;
     }
+}
+
+/**FORMULARIO ESTUDIANTES**/
+
+.estudiante-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.estudiante-form-container form {
+    flex-grow: 1;
+    margin-left: 1em;
+    align-items: center;
+}
+
+.input-box .details1{
+    margin-right: 10px;
+}
+
+.input-box .details2{
+    margin-right: 3px;
+}
+
+.estudiante-form-container form input {
+    max-width: 65%;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.est-image {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.estudiante-form-container form #addStudentButton {
+    max-width: 70%;
+    margin-left: 20px;
+    text-decoration: none;
+    background-color: rgb(50, 102, 243);
+    padding: 0.5em 1.4em;
+    border-radius: 1em;
+    margin-top: 50px;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .3s;
+}
+
+.estudiante-form-container form #addStudentButton:hover {
+    border: 1px solid #6536ff;
+    color:rgb(50, 102, 243);
+    background-color: #ffffff;
 }

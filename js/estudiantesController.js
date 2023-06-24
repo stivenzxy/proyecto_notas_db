@@ -16,7 +16,7 @@ closeModal.addEventListener("click", (e) => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("form-addStudent");
+  const form = document.getElementById("form-addExistingStudent");
 
   /////////////////////////////////////////////
 
