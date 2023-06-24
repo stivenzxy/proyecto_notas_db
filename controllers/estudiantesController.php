@@ -24,7 +24,7 @@ class EstudiantesController extends Connection {
                     $this->agregarEstudianteExistente();
                     break;
                 default:
-                    echo 'Acción inválida';
+                    //echo 'Acción inválida';
                     break;
             }
         }

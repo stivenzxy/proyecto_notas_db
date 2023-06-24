@@ -73,8 +73,6 @@ $contador = 1;
                     <form method="post" id="form-addExistingStudent" action="../controllers/estudiantesController.php">
                         <h2 class="modal-title1">Agregar estudiante existente a la inscripcion</h2>
                         <label for="listEstudiantes" class="listEstudiantes">Estudiantes disponibles: </label><br>
-                        <button type="button" value="false">Inscritos</button>
-                        <button type="button" value="true">No inscritos</button>
                         <?php
                             require_once("../controllers/estudiantesController.php");
                             $class = new EstudiantesController();

@@ -1,5 +1,4 @@
 <?php
-
 class InscripcionesModel {
     public function getEstudiantesInscritos($nomb_curso,$anio,$periodo,$connect){
         $query = "SELECT e.cod_est,CONCAT(e.nomb1_est,' ',e.nomb2_est,' ',e.ape_paterno,' ',e.ape_materno) 

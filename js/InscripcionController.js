@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    xhr.open("POST", "../controllers/inscripcionesController.php", true);
+    xhr.open("POST", "controllers/inscripcionesController.php", true);
     xhr.send(formData);
   });
 });
