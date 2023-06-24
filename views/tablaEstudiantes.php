@@ -49,7 +49,8 @@ $contador = 1;
                 </tr>
             </thead>
             <tbody id="tablaEstudiantes">
-                <?php foreach ($estudiantesInscritos as $estudianteInscrito) { ?>
+                <?php
+                foreach ($estudiantesInscritos as $estudianteInscrito) { ?>
                 <tr>
                     <td><?php echo $contador++; ?></td>
                     <td><?php echo $estudianteInscrito['cod_est']; ?></td>

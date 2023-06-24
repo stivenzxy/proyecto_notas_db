@@ -1,37 +1,41 @@
 CREATE TABLE usuarios(
-	codigo_usr INT PRIMARY KEY NOT NULL, CHECK(codigo_usr>=0),
+	codigo_usr INT NOT NULL, CHECK(codigo_usr>=0),
 	nomb1_usr VARCHAR(50),
 	nomb2_usr VARCHAR(50),
 	ape_paterno_usr VARCHAR(50),
 	ape_materno_usr VARCHAR(50),
 	passhash TEXT NOT NULL
-)
-
+);
+ALTER TABLE usuarios ADD CONSTRAINT pk_codigousr PRIMARY KEY(codigo_usr);
 
 CREATE TABLE cursos(
-	cod_curso INT PRIMARY KEY NOT NULL, CHECK(cod_curso>=0),
-	nomb_curso VARCHAR(50) NOT NULL
+	cod_curso INT NOT NULL, CHECK(cod_curso>=0),
+	nomb_curso VARCHAR(50) NOT NULL,
 	codigo_usr INT NOT NULL, CHECK(codigo_usr>=0)
 );
-
+ALTER TABLE cursos ADD CONSTRAINT pk_codcurso PRIMARY KEY(cod_curso);
+ALTER TABLE cursos ADD CONSTRAINT fk_cod_usr FOREIGN KEY(codigo_usr) REFERENCES usuarios(codigo_usr) on DELETE RESTRICT ON UPDATE CASCADE;
 CREATE TABLE estudiantes(
-	cod_est INT PRIMARY KEY NOT NULL, CHECK(cod_est>=0),
+	cod_est INT  NOT NULL, CHECK(cod_est>=0),
 	nomb1_est VARCHAR(50),
 	nomb2_est VARCHAR(50),
 	ape_paterno VARCHAR(50),
 	ape_materno VARCHAR(50)
 );
+ALTER TABLE estudiantes ADD CONSTRAINT pk_estudiantes PRIMARY KEY(cod_est);
 
 CREATE TABLE inscripciones(
+	cod_insc SERIAL UNIQUE NOT NULL,
 	cod_curso INT NOT NULL, CHECK(cod_curso>=0),
 	cod_est INT NOT NULL, CHECK(cod_est>=0),
 	periodo INT NOT NULL, CHECK(periodo>=0),
 	anio INT NOT NULL, CHECK(anio>=0)
+	
 );
-ALTER TABLE inscripciones ADD CONSTRAINT pk_inscrip PRIMARY KEY(cod_curso,cod_est,periodo,anio);
+ALTER TABLE inscripciones ADD CONSTRAINT pk_inscrip PRIMARY KEY(cod_insc);
 ALTER TABLE inscripciones ADD CONSTRAINT fk_cursos FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE inscripciones ADD CONSTRAINT fk_estudiantes FOREIGN KEY (cod_est) REFERENCES estudiantes(cod_est) ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE cursos ADD CONSTRAINT fk_cod_usr FOREIGN KEY(codigo_usr) REFERENCES usuarios(codigo_usr) on DELETE RESTRICT ON UPDATE CASCADE;
+
 
 CREATE TABLE notas(
 	nota INT PRIMARY KEY NOT NULL, CHECK(nota>=0),
@@ -43,23 +47,21 @@ CREATE TABLE notas(
 ALTER TABLE notas ADD CONSTRAINT fk_cod_curso FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE calificaciones(
+	cod_insc SERIAL NOT NULL,
 	cod_cal INT,CHECK(cod_cal>=0),
 	valor REAL, CHECK(valor>=0),
 	fecha DATE NOT NULL,
-	cod_curso INT NOT NULL, CHECK(cod_curso>=0),
-	cod_est INT NOT NULL, CHECK(cod_est>=0),
-	periodo INT NOT NULL, CHECK(periodo>=0),
-	anio INT NOT NULL, CHECK(anio>=0),
 	nota INT NOT NULL, CHECK(nota>=0)
 );
 
-ALTER TABLE calificaciones ADD CONSTRAINT pk_calificaciones PRIMARY KEY(cod_cal,cod_curso,cod_est,periodo,anio,nota);
-ALTER TABLE calificaciones ADD CONSTRAINT fk_inscripciones_cal FOREIGN KEY (cod_curso,cod_est,periodo,anio) REFERENCES inscripciones(cod_curso,cod_est,periodo,anio) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE calificaciones ADD CONSTRAINT pk_calificaciones PRIMARY KEY(cod_cal);
+ALTER TABLE calificaciones ADD CONSTRAINT fk_inscripciones_cal FOREIGN KEY (cod_insc) REFERENCES inscripciones(cod_insc) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE calificaciones ADD CONSTRAINT fk_notas_cal FOREIGN KEY (nota) REFERENCES notas(nota) ON DELETE CASCADE ON UPDATE CASCADE;
 
+COPY usuarios(codigo_usr,nomb1_usr,nomb2_usr,ape_paterno_usr,ape_materno_usr,passhash) FROM '/tmp/usuarios.csv' DELIMITER ',' CSV HEADER;
 COPY estudiantes(cod_est,nomb1_est,nomb2_est,ape_paterno,ape_materno) FROM '/tmp/estudiantes.csv' DELIMITER ',' CSV HEADER;
-COPY cursos(cod_curso,nomb_curso) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
-COPY inscripciones(cod_curso,cod_est,anio,periodo) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
+COPY cursos(cod_curso,nomb_curso,codigo_usr) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
+COPY inscripciones(cod_curso,cod_est,anio,periodo,cod_insc) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE extension pgcrypto;

@@ -24,6 +24,15 @@
             <ul class="menu-box">
                 <li><a href="index.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
                 <li><a href="cursos.php"><i class="fa fa-list-check fa-fw"></i>Cursos</a></li>
+
+                <form method="post" action="controllers/cursosController.php">
+                <input type="hidden" name="cod_usr" value="100000000" required>
+                <button type="submit" id="addButton">
+                                <h2 class="textcontainer">Listado cursos</h2>
+                            </button>
+                <input type="hidden" name="action" value="verListado">
+                </form>
+                
                 <li><a href="#"><i class="fa fa-pen-to-square fa-fw"></i>Editar Notas</a></li>
                 <li><a href="#"><i class="fa fa-file-pdf fa-fw"></i>Reporte de notas</a></li>
             </ul>
