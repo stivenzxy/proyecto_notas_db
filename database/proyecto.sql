@@ -5,14 +5,14 @@ CREATE TABLE usuarios(
 	ape_paterno_usr VARCHAR(50),
 	ape_materno_usr VARCHAR(50),
 	passhash TEXT NOT NULL
-)
-
+);
 
 CREATE TABLE cursos(
 	cod_curso INT PRIMARY KEY NOT NULL, CHECK(cod_curso>=0),
-	nomb_curso VARCHAR(50) NOT NULL
+	nomb_curso VARCHAR(50) NOT NULL,
 	codigo_usr INT NOT NULL, CHECK(codigo_usr>=0)
 );
+ALTER TABLE cursos ADD CONSTRAINT fk_cod_usr FOREIGN KEY(codigo_usr) REFERENCES usuarios(codigo_usr) on DELETE RESTRICT ON UPDATE CASCADE;
 
 CREATE TABLE estudiantes(
 	cod_est INT PRIMARY KEY NOT NULL, CHECK(cod_est>=0),
@@ -31,7 +31,6 @@ CREATE TABLE inscripciones(
 ALTER TABLE inscripciones ADD CONSTRAINT pk_inscrip PRIMARY KEY(cod_curso,cod_est,periodo,anio);
 ALTER TABLE inscripciones ADD CONSTRAINT fk_cursos FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE inscripciones ADD CONSTRAINT fk_estudiantes FOREIGN KEY (cod_est) REFERENCES estudiantes(cod_est) ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE cursos ADD CONSTRAINT fk_cod_usr FOREIGN KEY(codigo_usr) REFERENCES usuarios(codigo_usr) on DELETE RESTRICT ON UPDATE CASCADE;
 
 CREATE TABLE notas(
 	nota INT PRIMARY KEY NOT NULL, CHECK(nota>=0),
@@ -58,7 +57,7 @@ ALTER TABLE calificaciones ADD CONSTRAINT fk_inscripciones_cal FOREIGN KEY (cod_
 ALTER TABLE calificaciones ADD CONSTRAINT fk_notas_cal FOREIGN KEY (nota) REFERENCES notas(nota) ON DELETE CASCADE ON UPDATE CASCADE;
 
 COPY estudiantes(cod_est,nomb1_est,nomb2_est,ape_paterno,ape_materno) FROM '/tmp/estudiantes.csv' DELIMITER ',' CSV HEADER;
-COPY cursos(cod_curso,nomb_curso) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
+COPY cursos(cod_curso,nomb_curso,codigo_usr) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
 COPY inscripciones(cod_curso,cod_est,anio,periodo) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
 
 
@@ -90,6 +89,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT adduser(1001,'Jesus','','Reyes','Carvajal','12345');
 
 
 

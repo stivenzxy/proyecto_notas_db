@@ -19,7 +19,7 @@ class InscripcionesModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function AgregarEstudianteInscripcion($cod_est, $nomb_curso, $periodo, $anio,$connect){
+    public function AgregarEstudianteInscripcion($cod_est, $nomb_curso, $periodo, $anio, $connect){
         $select = 'SELECT cod_curso FROM cursos WHERE nomb_curso = ?';
         $insert = 'INSERT INTO inscripciones (cod_est, cod_curso, periodo, anio) VALUES (?, ?, ?, ?)';
     

@@ -14,7 +14,7 @@ closeModal.addEventListener("click", (e) => {
 
 
 
-
+/***OPERACIONES INSCRIBIR CREAR ESTUDIANTES** */
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-addExistingStudent");
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           const nuevosDatos = xhr.responseText;
-          //console.log(nuevosDatos);
+          console.log(nuevosDatos);
           tablaEstudiantes.innerHTML = nuevosDatos;
         } else {
           console.error("Error:", xhr.status);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function InsercionExitosa() {
     Swal.fire({
       title: "Inscripcion Exitosa!",
-      text: "El estudiante fue creado y agregado correctamente en el curso, fecha y periodo actual",
+      text: "El estudiante fue agregado a la presente inscripcion",
       icon: "success",
       allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
       allowEscapeKey: false, // si das esc no se sale de la alerta
@@ -58,18 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function InsercionFallida() {
-    Swal.fire({
-      title: "Insercion Fallida!",
-      text: "El codigo de estudiante ingresado ya existe en la base de datos",
-      icon: "error",
-      allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
-      allowEscapeKey: false, // si das esc no se sale de la alerta
-      showConfirmButton: true,
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "red",
-    });
-  }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -81,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           const response = JSON.parse(xhr.responseText);
-
+          console.log(xhr.responseText);
+          
           if (response.success === 1) {
             InsercionExitosa();
-          } else {
-            InsercionFallida();
-          }
+          } 
+
         } else {
           console.error("Error:", xhr.status);
         }

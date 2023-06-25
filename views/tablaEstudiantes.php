@@ -70,23 +70,27 @@ $contador = 1;
 
                 <div class="addEstudianteExistente-container">
                     <img src="../resources/AddExistStudent.svg" class="modal-image">
-                    <form method="post" id="form-addExistingStudent" action="../controllers/estudiantesController.php">
+                    <form method="post" id="form-addExistingStudent" action="../controllers/inscripcionesController.php">
                         <h2 class="modal-title">Agregar estudiante existente a la inscripcion</h2>
-                        <label for="listEstudiantes" class="listEstudiantes">Estudiantes disponibles: </label><br>
+                        <label for="listEstudiante" class="listEstudiantes">Estudiantes disponibles: </label><br>
                         <?php
                             require_once("../controllers/estudiantesController.php");
                             $class = new EstudiantesController();
                             $estudiantesDisp = $class->mostrarEstudiantesExistentes();
-                            echo "<select>";
-                            foreach ($estudiantesDisp as $nombre) {
-                                echo "<option id='listEstudiantes' value='" . $nombre['nombre'] . "'>" . $nombre['nombre'] . "</option>";
+                            echo "<select name='listEstudiantes'>";
+                            foreach ($estudiantesDisp as $estudiante) {
+                                $codigoEstudiante = $estudiante['cod_est'];
+                                $nombreCompleto = $estudiante['nombre'];
+                                $opcion = $codigoEstudiante . ' - ' . $nombreCompleto;
+
+                                echo "<option id='listEstudiante' value='" . $opcion . "'>" . $opcion . "</option>";
                             }
                             echo "</select>";
                         ?>
                         <button type="submit" id="addStudentButton">
                             <h2 class="textcontainer">Agregar</h2>
                         </button>
-                        <input type="hidden" name="action" value="agregarEstudianteExistente">
+                        <input type="hidden" name="action" value="inscribirEstudiante">
                         <a href="#" class="modal-close">Cerrar</a>
                     </form>
                 </div>
@@ -94,7 +98,7 @@ $contador = 1;
         </section>
         <div class="alerta"></div>
     </div>
-    <script type="module" src="../js/estudiantesController.js"></script>
+    <script type="module" src="../js/inscribirEstudiante.js"></script>
 </body>
 
 </html>

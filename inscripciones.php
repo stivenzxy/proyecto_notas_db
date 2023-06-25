@@ -21,7 +21,7 @@
                 </select>
                 <div class="input-box">
                     <span class="details">Año:</span>
-                    <input type="number" id="anio" name="anio" placeholder="año" required>
+                    <input type="number" id="anio" min="2020" max="2050" name="anio" placeholder="año" required>
                 </div>
                 <div class="radio-container">
                     <h4>Periodo: </h4>
@@ -33,10 +33,13 @@
                     <label for="periodo2" class="radio-custom">Periodo II</label>
                 </div>
                 <button type="submit" id="button">Ver listado de estudiantes</button>
+                <input type="hidden" name="action" value="verListado">
+                <!--<button type="submit" id="button2">Crear Inscripcion</button>
+                <input type="hidden" name="action" value="crearInscripcion">-->
             </div>
             <br><br>
         </form>
     </div>
 </main>
-<script type="module" src="./js/InscripcionController.js"></script>
+<script type="module" src="./js/verInscripcionController.js"></script>
 <?php require('./layout/footer.php')?>

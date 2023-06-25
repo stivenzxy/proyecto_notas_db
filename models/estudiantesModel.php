@@ -1,15 +1,32 @@
 <?php 
 class EstudiantesModel {
-    public function obtenerNombreEstudiantes($connect) {
-        $query = "SELECT CONCAT(nomb1_est,' ',nomb2_est,' ',ape_paterno,' ',ape_materno) 
+    public function obtenerNombreEstudiantes($connect,$nomb_curso,$anio,$periodo) {
+        $select = 'SELECT cod_curso FROM cursos WHERE nomb_curso = ?';
+        $query = "SELECT cod_est,CONCAT(nomb1_est,' ',nomb2_est,' ',ape_paterno,' ',ape_materno) 
                   AS nombre 
-                  FROM estudiantes ORDER BY nombre ASC";
+                  FROM estudiantes 
+                  WHERE cod_est 
+                  NOT IN(SELECT DISTINCT cod_est FROM inscripciones WHERE cod_curso=? AND anio=? AND periodo=?) 
+                  ORDER BY cod_est ASC";
 
-        $stmt = $connect->prepare($query);
-        $stmt->execute();
+        $stmt1 = $connect->prepare($select);
+        $stmt1->bindParam(1,$nomb_curso);
+        $stmt1->execute();
+        $cod_curso = $stmt1->fetchColumn();
+    
+        if (!$cod_curso) {
+            return false;
+        }
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt2 = $connect->prepare($query);
+        $stmt2->bindParam(1,$cod_curso);
+        $stmt2->bindParam(2,$anio);
+        $stmt2->bindParam(3,$periodo);
+        $stmt2->execute();
+
+        return $stmt2->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function InsertarEstudiantes($cod_est,$nombre1,$nombre2,$apellido1,$apellido2,$connect){
         $verify = 'SELECT cod_est FROM estudiantes WHERE cod_est = ?';
         $vstmt = $connect->prepare($verify);
