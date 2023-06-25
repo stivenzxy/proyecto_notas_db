@@ -5,10 +5,8 @@ require('../models/inscripcionesModel.php');
 class InscripcionesController extends Connection
 {
     private $inscripcionesModel;
-    private $nomb_curso;
-    private $anio;
-    private $periodo;
     public $estudiantesInscritos;
+    private $insert;
     public $connect;
     public function __construct()
     {
@@ -37,17 +35,17 @@ class InscripcionesController extends Connection
     public function VerListado()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si el form se envio mediante post, entonces {...}
-            $this->nomb_curso = $_POST['cursos'];
-            $this->anio = $_POST['anio'];
-            $this->periodo = $_POST['periodo'];
+            $nomb_curso = $_POST['cursos'];
+            $anio = $_POST['anio'];
+            $periodo = $_POST['periodo'];
 
-            $this->estudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($this->nomb_curso, $this->anio, $this->periodo, $this->connect);
+            $this->estudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($nomb_curso, $anio, $periodo, $this->connect);
             ///////////////////////////////
             session_start();
             $_SESSION['estudiantesInscritos'] = $this->estudiantesInscritos;
-            $_SESSION['cursos'] = $this->nomb_curso;
-            $_SESSION['anio'] = $this->anio;
-            $_SESSION['periodo'] = $this->periodo;
+            $_SESSION['cursos'] = $nomb_curso;
+            $_SESSION['anio'] = $anio;
+            $_SESSION['periodo'] = $periodo;
             ///////////////////////////////
             if (count($this->estudiantesInscritos) > 0) {
                 echo json_encode(array('success' => 1));
@@ -61,16 +59,23 @@ class InscripcionesController extends Connection
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $estudianteSeleccionado = $_POST['listEstudiantes'];
 
-            $separarAtributos = explode('-', $estudianteSeleccionado);
+            $separarAtributos = explode(' - ', $estudianteSeleccionado);
             $codigo = trim($separarAtributos[0]);
             $cod_est = intval($codigo);
 
-            $insert = $this->inscripcionesModel->AgregarEstudianteInscripcion($cod_est,$this->nomb_curso,$this->periodo,$this->anio,$this->connect);
+            session_start();
+            $nomb_curso = $_SESSION['cursos'];
+            $anio = $_SESSION['anio'];
+            $periodo = $_SESSION['periodo'];
+            
+            $this->insert = $this->inscripcionesModel->AgregarEstudianteInscripcion($cod_est,$nomb_curso,$periodo,$anio,$this->connect);
 
-            if($insert) {
-                $nuevosEstudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($this->nomb_curso,$this->anio,$this->periodo,$this->connect);
+            if($this->insert) {
+                $nuevosEstudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($nomb_curso,$anio,$periodo,$this->connect);
                 $_SESSION['nuevosEstudiantesInscritos']=$nuevosEstudiantesInscritos;
                 echo json_encode(array('success' => 1));
+            } else {
+                echo json_encode(array('success' => 0));
             }
         } 
     }

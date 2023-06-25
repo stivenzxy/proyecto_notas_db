@@ -73,7 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
           
           if (response.success === 1) {
             InsercionExitosa();
-          } 
+          } else {
+            alert("error");
+          }
 
         } else {
           console.error("Error:", xhr.status);
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    xhr.open("POST", "../controllers/estudiantesController.php", true); //Con post los datos se envian sin ser parte del cuerpo de la URL
+    xhr.open("POST", "../controllers/inscripcionesController.php", true); //Con post los datos se envian sin ser parte del cuerpo de la URL
     xhr.send(formDataEst);
   });
 });

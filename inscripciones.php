@@ -34,8 +34,6 @@
                 </div>
                 <button type="submit" id="button">Ver listado de estudiantes</button>
                 <input type="hidden" name="action" value="verListado">
-                <!--<button type="submit" id="button2">Crear Inscripcion</button>
-                <input type="hidden" name="action" value="crearInscripcion">-->
             </div>
             <br><br>
         </form>
