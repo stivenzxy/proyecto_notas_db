@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function InsercionExitosa() {
     Swal.fire({
       title: "Inscripcion Exitosa!",
-      text: "El estudiante fue agregado a la presente inscripcion",
+      text: "El estudiante fue agregado a la presente inscripcion correctamente",
       icon: "success",
       allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
       allowEscapeKey: false, // si das esc no se sale de la alerta
@@ -58,6 +58,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function Error() {
+    Swal.fire({
+      title: "El estudiante ya se encuentra inscrito",
+      text: "El estudiante ya fue agregado a la presente inscripcion",
+      icon: "error",
+      allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
+      allowEscapeKey: false, // si das esc no se sale de la alerta
+      showConfirmButton: true,
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "red",
+    })
+  }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -74,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (response.success === 1) {
             InsercionExitosa();
           } else {
-            alert("error");
+            Error();
           }
 
         } else {

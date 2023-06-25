@@ -7,7 +7,8 @@ class EstudiantesModel {
                   FROM estudiantes 
                   WHERE cod_est 
                   NOT IN(SELECT DISTINCT cod_est FROM inscripciones WHERE cod_curso=? AND anio=? AND periodo=?) 
-                  ORDER BY cod_est ASC";
+                  AND nomb1_est <> 'VACIO'
+                  ORDER BY nombre ASC";
 
         $stmt1 = $connect->prepare($select);
         $stmt1->bindParam(1,$nomb_curso);

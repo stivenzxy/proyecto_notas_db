@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function InsercionExitosa() {
     Swal.fire({
       title: "Inscripcion Exitosa!",
-      text: "El estudiante fue creado y agregado correctamente en el curso, fecha y periodo actual",
+      text: "El estudiante fue registrado correctamente",
       icon: "success",
       allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
       allowEscapeKey: false, // si das esc no se sale de la alerta

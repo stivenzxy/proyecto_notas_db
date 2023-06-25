@@ -4,11 +4,11 @@
         <div class="subtitle">
             <h2>Registro de notas - Fecha: <span id="current_date"></span></h2>
             <script>
-				date = new Date();
-				year = date.getFullYear();
-				month = date.getMonth() + 1;
-				day = date.getDate();
-				document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+            date = new Date();
+            year = date.getFullYear();
+            month = date.getMonth() + 1;
+            day = date.getDate();
+            document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
             </script>
         </div>
         <div class="title">Inscripciones de docente</div>
@@ -32,10 +32,14 @@
                     <input type="radio" id="periodo2" name="periodo" value="2" required>
                     <label for="periodo2" class="radio-custom">Periodo II</label>
                 </div>
-                <button type="submit" id="button">Ver listado de estudiantes</button>
+                <button type="submit" class="btnList" id="button">Ver listado de estudiantes</button>
                 <input type="hidden" name="action" value="verListado">
             </div>
             <br><br>
+        </form>
+        <form method="post" id="crearInscripcion-form" action="controllers/inscripcionesController.php">
+            <button type="submit" class="btnCrearInscripcion" id="button">Crear Inscripcion Vacia</button>
+            <input type="hidden" name="action" value="crearInscripcion">
         </form>
     </div>
 </main>
