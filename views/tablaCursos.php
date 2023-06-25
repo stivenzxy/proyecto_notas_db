@@ -7,7 +7,6 @@ $contador = 1;
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,7 @@ $contador = 1;
     <script src="https://kit.fontawesome.com/e562395e64.js" crossorigin="anonymous"></script>
     <script src="../node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.css">
-    <title>Cursos</title>
+    <title>Cursos de</title>
 </head>
 
 <body>
@@ -33,11 +32,7 @@ $contador = 1;
                 history.back();
             }
             </script>
-            <button type="submit" id="header-button">Añadir Curso</button>
-            <div class="input-search">
-                <input type="search" placeholder="Buscar" />
-                <i class="fa fa-search" id="search"></i>
-            </div>
+           
         </div>
         <table>
             <thead>
@@ -56,10 +51,27 @@ $contador = 1;
                     <td><?php echo $curso['cod_curso']; ?></td>
                     <td><?php echo $curso['nomb_curso']; ?></td>
                     <td>
-                        <button class="delete-button"
-                            data-cod_estudiante="<?php echo $curso['cod_est']; ?>">
+                    <button class="button">
+                            
+                            <i class="fa-solid fa-info"></i>
+                            
+                        </button>
+                    <button class="button">
+                            <i class="fa-solid fa-table"></i>
+                            
+                        </button>
+
+                        <button class="button">   
+                        <a href="../controllers/cursosController.php?action=editarCursoPre&cod_cur=<?php 
+                        echo $curso['cod_curso']; ?>&nomb_cur=<?php echo $curso['nomb_curso']; ?>">
+
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>  
+                        </button>
+
+                        <button class="delete-button">
                             <i class="fa-solid fa-trash"></i>
-                            <!--Cuando haga cambios aqui debo cambiar Actualizar tabla tambien-->
+                            
                         </button>
                     </td>
                 </tr>
@@ -71,4 +83,5 @@ $contador = 1;
 </body>
 
 </html>
+
 

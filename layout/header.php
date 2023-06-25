@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="resources/cursos.ico" type="image/x-icon">
     <title>Inicio</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/tablaEStudiantes.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e562395e64.js" crossorigin="anonymous"></script>
     <script src="node_modules/sweetalert2/dist/sweetalert2.js"></script>
@@ -25,13 +26,19 @@
                 <li><a href="index.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
                 <li><a href="cursos.php"><i class="fa fa-list-check fa-fw"></i>Cursos</a></li>
 
-                <form method="post" action="controllers/cursosController.php">
-                <input type="hidden" name="cod_usr" value="100000000" required>
-                <button type="submit" id="addButton">
-                                <h2 class="textcontainer">Listado cursos</h2>
-                            </button>
-                <input type="hidden" name="action" value="verListado">
-                </form>
+                <li>
+                    
+                    
+                    <form method="post" action="controllers/cursosController.php">
+                    
+                    <input type="hidden" name="cod_usr" value="100000000" required>
+                    <button type="submit" id="addButton">
+                        <h2 class="textcontainer"><a>Listado cursos </a></h2>
+                    </button>
+                    <input type="hidden" name="action" value="verListado">
+                    </form>
+                    <i class="fa fa-home fa-fw"></i>
+                </li>
                 
                 <li><a href="#"><i class="fa fa-pen-to-square fa-fw"></i>Editar Notas</a></li>
                 <li><a href="#"><i class="fa fa-file-pdf fa-fw"></i>Reporte de notas</a></li>
