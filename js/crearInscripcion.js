@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             toast: true,
             position: 'top',
             showConfirmButton: false,
-            timer: 2000,
+            timer: 1000,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -47,15 +47,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
       function Error() {
         Swal.fire({
-            title: "ERROR!",
-            text: "los datos estan vacios o la inscripcion ya existe",
-            icon: "error",
-            allowOutsideClick: false, // permite que la alerta no se cierre si clikeas fuera de ella
-            allowEscapeKey: false, // si das esc no se sale de la alerta
-            showConfirmButton: true,
-            confirmButtonText: "Aceptar",
-            confirmButtonColor: "red",
-          });
+          title: "ERROR!",
+          text: "los datos están vacíos o la inscripción ya existe",
+          icon: "error",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          showConfirmButton: true,
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "red",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
       }
   
       xhr.open("POST", "controllers/inscripcionesController.php", true);

@@ -20,14 +20,16 @@ class InscripcionesController extends Connection
             $action = $_POST['action'] ?? '';
             switch ($action) {
                 case 'verListado':
-                    $this->VerListado();
+                    $this->verListado();
                     break;
                 case 'inscribirEstudiante':
-                    $this->InscribirEstudiante();
+                    $this->inscribirEstudiante();
                     break;
                 case 'crearInscripcion':
                     $this->crearInscripcion();
                     break;
+                case 'eliminarEstudianteInscrito':
+                    $this->eliminarEstudianteInscrito();
                 default:
                     //echo 'Acción inválida';
                     break;
@@ -35,7 +37,7 @@ class InscripcionesController extends Connection
         }
     }
 
-    public function VerListado()
+    public function verListado()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si el form se envio mediante post, entonces {...}
             $nomb_curso = $_POST['cursos'];
@@ -58,7 +60,8 @@ class InscripcionesController extends Connection
         }
     }
 
-    public function InscribirEstudiante(){
+    public function inscribirEstudiante()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $estudianteSeleccionado = $_POST['listEstudiantes'];
 
@@ -70,34 +73,62 @@ class InscripcionesController extends Connection
             $nomb_curso = $_SESSION['cursos'];
             $anio = $_SESSION['anio'];
             $periodo = $_SESSION['periodo'];
-            
-            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso,$this->connect);
-            $this->insert = $this->inscripcionesModel->agregarEstudianteInscripcion($cod_est,$cod_curso,$periodo,$anio,$this->connect);
 
-            if($this->insert) {
-                $nuevosEstudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($nomb_curso,$anio,$periodo,$this->connect);
-                $_SESSION['nuevosEstudiantesInscritos']=$nuevosEstudiantesInscritos;
+            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso, $this->connect);
+            $this->insert = $this->inscripcionesModel->agregarEstudianteInscripcion($cod_est, $cod_curso, $periodo, $anio, $this->connect);
+
+            if ($this->insert) {
+                $nuevosEstudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($nomb_curso, $anio, $periodo, $this->connect);
+                $_SESSION['nuevosEstudiantesInscritos'] = $nuevosEstudiantesInscritos;
                 echo json_encode(array('success' => 1));
             } else {
                 echo json_encode(array('success' => 0));
             }
-        } 
+        }
     }
 
-    public function crearInscripcion() {
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    public function crearInscripcion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             session_start();
             $nomb_curso = $_SESSION['cursos'];
             $anio = $_SESSION['anio'];
             $periodo = $_SESSION['periodo'];
-    
-            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso,$this->connect);
-            $crearInscripcion = $this->inscripcionesModel->crearInscripcion($cod_curso,$anio,$periodo,$this->connect);
-    
-            if($crearInscripcion) {
+
+            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso, $this->connect);
+            $crearInscripcion = $this->inscripcionesModel->crearInscripcion($cod_curso, $anio, $periodo, $this->connect);
+
+            if ($crearInscripcion) {
                 echo json_encode(array('success' => 1));
             } else {
                 echo json_encode(array('success' => 0));
+            }
+        }
+    }
+
+    public function eliminarEstudianteInscrito()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $cod_est = $_POST['cod_estudiante'];
+
+            session_start();
+            $nomb_curso = $_SESSION['cursos'];
+            $anio = $_SESSION['anio'];
+            $periodo = $_SESSION['periodo'];
+
+            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso, $this->connect);
+            $eliminarEstudiante = $this->inscripcionesModel->eliminarEstudianteInscrito($cod_curso, $cod_est, $periodo, $anio, $this->connect);
+
+            if ($eliminarEstudiante) {
+                echo '<script>
+                        alert("estudiante eliminado correctamente!");
+                        location.reload();
+                      </script>';
+            } else {
+                echo '<script>
+                        alert("el estudiante ya se encuentra eliminado");
+                        location.reload();
+                     </script>';
             }
         }
     }

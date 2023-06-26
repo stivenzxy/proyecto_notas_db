@@ -29,9 +29,9 @@ $contador = 1;
             </div>
             <button onclick="goBack()" id="back-button">Volver</button>
             <script>
-                function goBack() {
-                    history.back();
-                }
+            function goBack() {
+                history.back();
+            }
             </script>
             <button type="submit" id="header-button">Añadir Estudiante</button>
             <div class="input-search">
@@ -51,19 +51,21 @@ $contador = 1;
             <tbody id="tablaEstudiantes">
                 <?php foreach ($estudiantesInscritos as $estudianteInscrito) {
                     if ($estudianteInscrito['cod_est'] != 0) { ?>
-                        <tr>
-                            <td><?php echo $contador++; ?></td>
-                            <td><?php echo $estudianteInscrito['cod_est']; ?></td>
-                            <td><?php echo $estudianteInscrito['nombre']; ?></td>
-                            <td>
-                                <form action="">
-                                    <button class="delete-button" data-cod_estudiante="<?php echo $estudianteInscrito['cod_est']; ?>">
-                                        <i class="fa-solid fa-trash"></i>
-                                        <!--Cuando haga cambios aquí debo cambiar Actualizar tabla también-->
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                <tr>
+                    <td><?php echo $contador++; ?></td>
+                    <td><?php echo $estudianteInscrito['cod_est']; ?></td>
+                    <td><?php echo $estudianteInscrito['nombre']; ?></td>
+                    <td>
+                        <form action="../controllers/inscripcionesController.php">
+                            <input type="hidden" name="cod_estudiante"
+                                value="<?php echo $estudianteInscrito['cod_est']; ?>">
+                            <button class="delete-button" type="submit">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <input type="hidden" name="action" value="eliminarEstudianteInscrito">
+                        </form>
+                    </td>
+                </tr>
                 <?php }
                 } ?>
             </tbody>
@@ -73,7 +75,8 @@ $contador = 1;
 
                 <div class="addEstudianteExistente-container">
                     <img src="../resources/AddExistStudent.svg" class="modal-image">
-                    <form method="post" id="form-addExistingStudent" action="../controllers/inscripcionesController.php">
+                    <form method="post" id="form-addExistingStudent"
+                        action="../controllers/inscripcionesController.php">
                         <h2 class="modal-title">Agregar estudiante existente a la inscripcion</h2>
                         <label for="listEstudiante" class="listEstudiantes">Estudiantes disponibles: </label><br>
                         <?php

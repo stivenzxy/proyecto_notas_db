@@ -1,0 +1,133 @@
+:root {
+    --azuloscuro: #283044;
+    --azulclaro: #78A1BB;
+    --piel: #EBF5EE;
+    --cafeclaro: #BFA89E;
+    --cafe: #8B786D;
+    /*--fuente: 'Quicksand', sans-serif;*/
+    --fuente: 'Raleway', sans-serif;
+
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,*::after,*::before{
+    box-sizing: inherit;
+}
+
+    
+body {
+    font-family: var(--fuente);
+    background-color: rgb(71, 61, 148);
+    display: flex;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.contenedor{
+    margin: auto;
+    max-width: 1000px;
+    width: 95%;
+    border-radius: 10px;
+    border: 2px solid black;
+    
+}
+
+
+.imagen-formulario{
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    flex: 0 0 calc(67%);
+    position: relative;
+   
+}
+.imagen-formulario  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.capa-degradada{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom,rgba(67, 46, 46, 0.5),rgba(67,46,46,0.5));
+}
+
+
+@media(min-width:768px){
+    .imagen-formulario{
+        height: auto;
+        background-position: right;
+    }
+
+}
+@media(min-width:1200px){
+    .imagen-formulario{
+        background-position: center;
+    }
+}
+
+@media(min-width:768px){
+    .contenedor-formulario{
+        display: flex;
+    }
+}
+
+.formulario{
+    padding: 50px;
+    background-color:rgb(7 16 131 / 87%);
+}
+
+
+
+.texto-formulario h2,p, .input label{
+    color: var(--piel);
+}
+
+.texto-formulario h2{
+    height: auto;
+    font-size: 40px;
+    text-align: center;
+}
+.texto-formulario p{
+    font-size: 22px;
+    text-align: center;
+}
+.input label{
+    display: block;
+    font-size: 12px;
+    font-weight: bolder;
+    margin: 10px 0;
+}
+
+.input input{
+    height: auto;
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 5px;
+    outline: none;
+
+}
+.input input[type="submit"]{
+    background-color: var(--azulclaro);
+    color:#EBF5EE;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
+    transition: background-color .3% ease-in-out;
+}
+.input input[type="submit"]:hover{
+    cursor: pointer;
+    background-color: #283044;
+}
+.texto-formulario img{
+   max-width: 100%;
+   max-height: 100%;
+ }

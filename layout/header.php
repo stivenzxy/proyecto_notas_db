@@ -22,7 +22,7 @@
             </label>
             <h1>Gestor de notas parciales</h1>
             <ul class="menu-box">
-                <li><a href="index.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
+                <li><a href="home.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
                 <li><a href="inscripciones.php"><i class="fa fa-list-check fa-fw"></i>Inscripciones</a></li>
                 <li><a href="estudiantes.php"><i class="fa fa-pen-to-square fa-fw"></i>Crear estudiante</a></li>
                 <li><a href="#"><i class="fa-solid fa-book fa-fw"></i>Editar Cursos</a></li>

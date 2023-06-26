@@ -2,7 +2,8 @@
 class InscripcionesModel
 {
 
-    public function getCodCurso($nomb_curso,$connect){
+    public function getCodCurso($nomb_curso, $connect)
+    {
         $select = 'SELECT cod_curso FROM cursos WHERE nomb_curso = ?';
         $stmt = $connect->prepare($select);
         $stmt->bindParam(1, $nomb_curso);
@@ -12,7 +13,7 @@ class InscripcionesModel
         return $cod_curso;
     }
 
-    public function getEstudiantesInscritos($nomb_curso,$anio,$periodo,$connect)
+    public function getEstudiantesInscritos($nomb_curso, $anio, $periodo, $connect)
     {
         $query = "SELECT e.cod_est,CONCAT(e.nomb1_est,' ',e.nomb2_est,' ',e.ape_paterno,' ',e.ape_materno) 
                   AS nombre 
@@ -32,7 +33,7 @@ class InscripcionesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function agregarEstudianteInscripcion($cod_est,$cod_curso,$periodo,$anio,$connect)
+    public function agregarEstudianteInscripcion($cod_est, $cod_curso, $periodo, $anio, $connect)
     {
         $verificar = 'SELECT * FROM inscripciones WHERE cod_est = ? AND anio = ? AND periodo = ? AND cod_curso = ?';
 
@@ -60,27 +61,55 @@ class InscripcionesModel
         }
     }
 
-    public function crearInscripcion($cod_curso,$anio,$periodo,$connect)
+    public function crearInscripcion($cod_curso, $anio, $periodo, $connect)
     {
         $verificar = 'SELECT * FROM inscripciones WHERE cod_est = 0 AND cod_curso = ? AND periodo = ? AND anio = ?';
 
         $vstmt = $connect->prepare($verificar);
-        $vstmt->bindParam(1,$cod_curso);
-        $vstmt->bindParam(2,$periodo);
-        $vstmt->bindParam(3,$anio);
+        $vstmt->bindParam(1, $cod_curso);
+        $vstmt->bindParam(2, $periodo);
+        $vstmt->bindParam(3, $anio);
 
         $vstmt->execute();
         $resultado = $vstmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if(count($resultado) > 0) {
+        if (count($resultado) > 0) {
             return false;
         } else {
             $insert = 'INSERT INTO inscripciones(cod_curso,cod_est,periodo,anio) VALUES (?, 0, ?, ?)';
 
             $stmt = $connect->prepare($insert);
+            $stmt->bindParam(1, $cod_curso);
+            $stmt->bindParam(2, $periodo);
+            $stmt->bindParam(3, $anio);
+
+            $stmt->execute();
+            return true;
+        }
+    }
+
+    public function eliminarEstudianteInscrito($cod_curso,$cod_est,$periodo,$anio,$connect)
+    {
+        $verificar = 'SELECT * FROM inscripciones WHERE cod_est = ? AND cod_curso = ? AND periodo = ? AND anio = ?';
+        $vstmt = $connect->prepare($verificar);
+        $vstmt->bindParam(1,$cod_curso);
+        $vstmt->bindParam(2,$cod_est);
+        $vstmt->bindParam(3,$periodo);
+        $vstmt->bindParam(4,$anio);
+        $vstmt->execute();
+
+        $resultado = $vstmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(count($resultado) == 0){
+            return false;
+        } else {
+            $delete = 'DELETE FROM inscripciones WHERE cod_est = ? AND cod_curso = ? AND periodo = ? AND anio = ?';
+        
+            $stmt = $connect->prepare($delete);
             $stmt->bindParam(1,$cod_curso);
-            $stmt->bindParam(2,$periodo);
-            $stmt->bindParam(3,$anio);
+            $stmt->bindParam(2,$cod_est);
+            $stmt->bindParam(3,$periodo);
+            $stmt->bindParam(4,$anio);
     
             $stmt->execute();
             return true;
