@@ -15,10 +15,19 @@
         <form method="post" id="form-cursos" action="controllers/inscripcionesController.php">
             <div class="cursos-details">
                 <label for="cursos" class="cursos-selector">Cursos:</label>
-                <select id="cursos" name="cursos">
-                    <option value="Bases de datos">Bases de datos</option>
-                    <option value="Redes de computadores">Redes de computadores</option>
-                </select>
+                <?php
+                require_once("controllers/cursosController.php");
+                $class = new cursosController();
+                $cursosList = $class->mostrarCursos();
+                echo "<select name='cursos'>";
+                foreach ($cursosList as $curso) {
+                    $nombreCurso = $curso['nomb_curso'];
+                    $opcion = $nombreCurso;
+
+                    echo "<option id='listCursos' value='" . $opcion . "'>" . $opcion . "</option>";
+                }
+                echo "</select>";
+                ?>
                 <div class="input-box">
                     <span class="details">Año:</span>
                     <input type="number" id="anio" min="2020" max="2050" name="anio" placeholder="año" required>

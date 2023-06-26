@@ -98,7 +98,7 @@ class InscripcionesController extends Connection
             $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso, $this->connect);
             $crearInscripcion = $this->inscripcionesModel->crearInscripcion($cod_curso, $anio, $periodo, $this->connect);
 
-            if ($crearInscripcion) {
+            if ($crearInscripcion == true) {
                 echo json_encode(array('success' => 1));
             } else {
                 echo json_encode(array('success' => 0));
@@ -109,7 +109,7 @@ class InscripcionesController extends Connection
     public function eliminarEstudianteInscrito()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $cod_est = $_POST['cod_estudiante'];
+            $cod_est = $_POST['cod_est'];
 
             session_start();
             $nomb_curso = $_SESSION['cursos'];
@@ -118,16 +118,17 @@ class InscripcionesController extends Connection
 
             $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso, $this->connect);
             $eliminarEstudiante = $this->inscripcionesModel->eliminarEstudianteInscrito($cod_curso, $cod_est, $periodo, $anio, $this->connect);
-
-            if ($eliminarEstudiante) {
+            //echo var_dump($eliminarEstudiante);
+           if ($eliminarEstudiante == true) {
                 echo '<script>
                         alert("estudiante eliminado correctamente!");
+                        history.back();
                         location.reload();
                       </script>';
             } else {
                 echo '<script>
                         alert("el estudiante ya se encuentra eliminado");
-                        location.reload();
+                        history.back();
                      </script>';
             }
         }

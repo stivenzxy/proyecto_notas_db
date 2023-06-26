@@ -90,7 +90,7 @@ class InscripcionesModel
 
     public function eliminarEstudianteInscrito($cod_curso,$cod_est,$periodo,$anio,$connect)
     {
-        $verificar = 'SELECT * FROM inscripciones WHERE cod_est = ? AND cod_curso = ? AND periodo = ? AND anio = ?';
+        $verificar = 'SELECT cod_est FROM inscripciones WHERE cod_curso = ? AND cod_est = ? AND periodo = ? AND anio = ?';
         $vstmt = $connect->prepare($verificar);
         $vstmt->bindParam(1,$cod_curso);
         $vstmt->bindParam(2,$cod_est);
@@ -99,20 +99,20 @@ class InscripcionesModel
         $vstmt->execute();
 
         $resultado = $vstmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if(count($resultado) == 0){
-            return false;
-        } else {
+       // var_dump($resultado);
+        if(count($resultado) > 0){
             $delete = 'DELETE FROM inscripciones WHERE cod_est = ? AND cod_curso = ? AND periodo = ? AND anio = ?';
         
             $stmt = $connect->prepare($delete);
-            $stmt->bindParam(1,$cod_curso);
-            $stmt->bindParam(2,$cod_est);
+            $stmt->bindParam(1,$cod_est);
+            $stmt->bindParam(2,$cod_curso);
             $stmt->bindParam(3,$periodo);
             $stmt->bindParam(4,$anio);
     
             $stmt->execute();
             return true;
+        } else {
+            return false;
         }
     }
 }

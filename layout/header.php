@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,21 +13,31 @@
     <script src="node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.css">
 </head>
+
 <body>
     <div class="contenedor">
-    <header>
-        <nav>
-            <input type="checkbox" id="ckbox">
-            <label for="ckbox" class="drawer">
-            <i class="fa-solid fa-bars"></i>
-            </label>
-            <h1>Gestor de notas parciales</h1>
-            <ul class="menu-box">
-                <li><a href="home.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
-                <li><a href="inscripciones.php"><i class="fa fa-list-check fa-fw"></i>Inscripciones</a></li>
-                <li><a href="estudiantes.php"><i class="fa fa-pen-to-square fa-fw"></i>Crear estudiante</a></li>
-                <li><a href="#"><i class="fa-solid fa-book fa-fw"></i>Editar Cursos</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="contenido">
+        <header>
+            <nav>
+                <input type="checkbox" id="ckbox">
+                <label for="ckbox" class="drawer">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+                <h1>Gestor de notas parciales</h1>
+                <ul class="menu-box">
+                    <li><a href="home.php"><i class="fa fa-home fa-fw"></i>Inicio</a></li>
+                    <li><a href="inscripciones.php"><i class="fa fa-list-check fa-fw"></i>Inscripciones</a></li>
+                    <li><a href="estudiantes.php"><i class="fa fa-pen-to-square fa-fw"></i>Crear estudiante</a></li>
+                    <!--<li><a href="#"><i class="fa-solid fa-book fa-fw"></i>Editar Cursos</a></li>-->
+                    <li>
+                        <form method="post" action="controllers/cursosController.php">
+                            <input type="hidden" name="cod_usr" value="1001" required>
+                            <button type="submit" id="addButtonCurso" style="background-color: rgb(79, 61, 218);border: none; cursor:pointer;">
+                                <h2 class="textcontainer"><a style="font-weight: normal;"><i class="fa fa-book fa-fw"></i>Listado cursos </a></h2>
+                            </button>
+                            <input type="hidden" name="action" value="verListado">
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="contenido">

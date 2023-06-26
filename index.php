@@ -14,7 +14,6 @@
     <link rel="shortcut icon" href="resources/login.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/stylesLogin.css">
 </head>
-
 <body>
     <div class="contenedor-formulario contenedor">
         <div class="imagen-formulario">
@@ -27,12 +26,10 @@
                 <h2>Bienvenido</h2>
                 <p>inicia sesión con tu cuenta</p>
             </div>
-
             <div class="input">
                 <label for="username">Codigo de docente:</label>
                 <input placeholder="ingrese su codigo de docente" type="number" id="username" name="codigo" required><br><br>
             </div>
-
             <div class="input">
                 <label for="password">Contraseña:</label>
                 <input placeholder="Ingrese su contraseña" type="password" id="password" name="password"

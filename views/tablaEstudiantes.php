@@ -2,6 +2,8 @@
 session_start();
 $estudiantesInscritos = $_SESSION['estudiantesInscritos'];
 $nomb_curso = $_SESSION['cursos'];
+$periodo = $_SESSION['periodo'];
+$anio = $_SESSION['anio'];
 $contador = 1;
 ?>
 
@@ -26,6 +28,7 @@ $contador = 1;
             <div class="header-container">
                 <h2>Estudiantes</h2>
                 <h4>Curso: <?php echo $nomb_curso ?></h4>
+                <h4>Año: <?php echo $anio ?> - Periodo: <?php echo $periodo ?></h4>
             </div>
             <button onclick="goBack()" id="back-button">Volver</button>
             <script>
@@ -35,11 +38,11 @@ $contador = 1;
             </script>
             <button type="submit" id="header-button">Añadir Estudiante</button>
             <div class="input-search">
-                <input type="search" placeholder="Buscar" />
+                <input type="search" id="buscador" placeholder="Buscar" />
                 <i class="fa fa-search" id="search"></i>
             </div>
         </div>
-        <table>
+        <table id="tabla">
             <thead>
                 <tr>
                     <th>N°</th>
@@ -56,9 +59,8 @@ $contador = 1;
                     <td><?php echo $estudianteInscrito['cod_est']; ?></td>
                     <td><?php echo $estudianteInscrito['nombre']; ?></td>
                     <td>
-                        <form action="../controllers/inscripcionesController.php">
-                            <input type="hidden" name="cod_estudiante"
-                                value="<?php echo $estudianteInscrito['cod_est']; ?>">
+                        <form action="../controllers/inscripcionesController.php" method="post">
+                            <input type="hidden" name="cod_est" value="<?php echo $estudianteInscrito['cod_est']; ?>">
                             <button class="delete-button" type="submit">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
@@ -105,6 +107,7 @@ $contador = 1;
         <div class="alerta"></div>
     </div>
     <script type="module" src="../js/inscribirEstudiante.js"></script>
+    <script type="module" src="../js/buscador.js"></script>
 </body>
 
 </html>

@@ -20,7 +20,7 @@ html {
     
 body {
     font-family: var(--fuente);
-    background-color: rgb(71, 61, 148);
+    background-color: rgb(37 25 109);
     display: flex;
     align-items: center;
     height: 100vh;
@@ -81,7 +81,7 @@ body {
 
 .formulario{
     padding: 50px;
-    background-color:rgb(7 16 131 / 87%);
+    background-color: rgb(33 34 45 / 87%);
 }
 
 

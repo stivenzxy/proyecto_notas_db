@@ -13,7 +13,6 @@ closeModal.addEventListener("click", (e) => {
 });
 
 
-
 /***OPERACIONES INSCRIBIR CREAR ESTUDIANTES** */
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-addExistingStudent");
@@ -31,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const nuevosDatos = xhr.responseText;
           console.log(nuevosDatos);
           tablaEstudiantes.innerHTML = nuevosDatos;
+
         } else {
           console.error("Error:", xhr.status);
         }
@@ -53,8 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
       showConfirmButton: true,
       confirmButtonText: "Aceptar",
       confirmButtonColor: "#86FFC7",
-    }).then(() => {
-      actualizarTablaEstudiantes();
+    }).then((result) => {
+      if (result.isConfirmed) {
+        actualizarTablaEstudiantes();
+      }
     });
   }
 

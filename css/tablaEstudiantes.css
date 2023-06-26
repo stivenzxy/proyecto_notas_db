@@ -89,6 +89,36 @@ body {
     cursor: pointer;
 }
 
+.container .tablaNotasButton {
+    outline: none;
+    border: none;
+    color: #ffffff;
+    background-color: #009353;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.container .editarButton {
+    outline: none;
+    border: none;
+    color: #ffffff;
+    margin-left: 10px;
+    background-color: #705ea9;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.fa-edit:before, .fa-pen-to-square:before {
+    content: "\f044";
+    color: white;
+}
+
 .container .delete-button:hover{
     color: #000000;
     background-color: #e40e0e;
