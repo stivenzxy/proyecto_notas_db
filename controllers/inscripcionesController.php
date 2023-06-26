@@ -25,6 +25,9 @@ class InscripcionesController extends Connection
                 case 'inscribirEstudiante':
                     $this->InscribirEstudiante();
                     break;
+                case 'crearInscripcion':
+                    $this->crearInscripcion();
+                    break;
                 default:
                     //echo 'Acción inválida';
                     break;
@@ -68,7 +71,8 @@ class InscripcionesController extends Connection
             $anio = $_SESSION['anio'];
             $periodo = $_SESSION['periodo'];
             
-            $this->insert = $this->inscripcionesModel->AgregarEstudianteInscripcion($cod_est,$nomb_curso,$periodo,$anio,$this->connect);
+            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso,$this->connect);
+            $this->insert = $this->inscripcionesModel->agregarEstudianteInscripcion($cod_est,$cod_curso,$periodo,$anio,$this->connect);
 
             if($this->insert) {
                 $nuevosEstudiantesInscritos = $this->inscripcionesModel->getEstudiantesInscritos($nomb_curso,$anio,$periodo,$this->connect);
@@ -78,6 +82,24 @@ class InscripcionesController extends Connection
                 echo json_encode(array('success' => 0));
             }
         } 
+    }
+
+    public function crearInscripcion() {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            session_start();
+            $nomb_curso = $_SESSION['cursos'];
+            $anio = $_SESSION['anio'];
+            $periodo = $_SESSION['periodo'];
+    
+            $cod_curso = $this->inscripcionesModel->getCodCurso($nomb_curso,$this->connect);
+            $crearInscripcion = $this->inscripcionesModel->crearInscripcion($cod_curso,$anio,$periodo,$this->connect);
+    
+            if($crearInscripcion) {
+                echo json_encode(array('success' => 1));
+            } else {
+                echo json_encode(array('success' => 0));
+            }
+        }
     }
 }
 

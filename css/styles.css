@@ -320,7 +320,7 @@ form .btnCrearInscripcion:hover {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 560px) {
 
     header h1{
        font-size: 25px;
@@ -341,7 +341,11 @@ form .btnCrearInscripcion:hover {
     }
 
     .cursos-details .input-box .details {
-        padding-right: 200px;
+        padding-right: 300px;
+    }
+
+    .container .title {
+        font-size: 20px;
     }
 }
 
@@ -396,11 +400,13 @@ form .btnCrearInscripcion:hover {
 }
 
 .estudiante-form-container form #addStudentButton {
-    max-width: 70%;
+    width: 70%;
     margin-left: 20px;
     text-decoration: none;
     background-color: rgb(50, 102, 243);
     padding: 0.5em 1.4em;
+    color: #FFFFFF;
+    border: none;
     border-radius: 1em;
     margin-top: 50px;
     display: flex;

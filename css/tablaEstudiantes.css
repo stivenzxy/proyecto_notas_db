@@ -249,11 +249,10 @@ tbody tr:hover {
     width: 40%;
     outline: none;
     font-weight: bold;
-    border: none;
+    border: 1px solid #000000;
     color: #FFFFFF;
     cursor: pointer;
     padding: 0.5em 1.4em;
-    border: 1px solid #000000;
     border-radius: 6px;
     font-size: 15px;
     margin-top: 10px;

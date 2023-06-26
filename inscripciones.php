@@ -44,4 +44,5 @@
     </div>
 </main>
 <script type="module" src="./js/verInscripcionController.js"></script>
+<script type="module" src="./js/crearInscripcion.js"></script>
 <?php require('./layout/footer.php')?>

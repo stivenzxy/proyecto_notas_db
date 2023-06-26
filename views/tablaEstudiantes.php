@@ -29,9 +29,9 @@ $contador = 1;
             </div>
             <button onclick="goBack()" id="back-button">Volver</button>
             <script>
-            function goBack() {
-                history.back();
-            }
+                function goBack() {
+                    history.back();
+                }
             </script>
             <button type="submit" id="header-button">Añadir Estudiante</button>
             <div class="input-search">
@@ -49,20 +49,23 @@ $contador = 1;
                 </tr>
             </thead>
             <tbody id="tablaEstudiantes">
-                <?php foreach ($estudiantesInscritos as $estudianteInscrito) { ?>
-                <tr>
-                    <td><?php echo $contador++; ?></td>
-                    <td><?php echo $estudianteInscrito['cod_est']; ?></td>
-                    <td><?php echo $estudianteInscrito['nombre']; ?></td>
-                    <td>
-                        <button class="delete-button"
-                            data-cod_estudiante="<?php echo $estudianteInscrito['cod_est']; ?>">
-                            <i class="fa-solid fa-trash"></i>
-                            <!--Cuando haga cambios aqui debo cambiar Actualizar tabla tambien-->
-                        </button>
-                    </td>
-                </tr>
-                <?php } ?>
+                <?php foreach ($estudiantesInscritos as $estudianteInscrito) {
+                    if ($estudianteInscrito['cod_est'] != 0) { ?>
+                        <tr>
+                            <td><?php echo $contador++; ?></td>
+                            <td><?php echo $estudianteInscrito['cod_est']; ?></td>
+                            <td><?php echo $estudianteInscrito['nombre']; ?></td>
+                            <td>
+                                <form action="">
+                                    <button class="delete-button" data-cod_estudiante="<?php echo $estudianteInscrito['cod_est']; ?>">
+                                        <i class="fa-solid fa-trash"></i>
+                                        <!--Cuando haga cambios aquí debo cambiar Actualizar tabla también-->
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
         <section class="modal">
@@ -74,18 +77,18 @@ $contador = 1;
                         <h2 class="modal-title">Agregar estudiante existente a la inscripcion</h2>
                         <label for="listEstudiante" class="listEstudiantes">Estudiantes disponibles: </label><br>
                         <?php
-                            require_once("../controllers/estudiantesController.php");
-                            $class = new EstudiantesController();
-                            $estudiantesDisp = $class->mostrarEstudiantesExistentes();
-                            echo "<select name='listEstudiantes'>";
-                            foreach ($estudiantesDisp as $estudiante) {
-                                $codigoEstudiante = $estudiante['cod_est'];
-                                $nombreCompleto = $estudiante['nombre'];
-                                $opcion = $codigoEstudiante . ' - ' . $nombreCompleto;
+                        require_once("../controllers/estudiantesController.php");
+                        $class = new EstudiantesController();
+                        $estudiantesDisp = $class->mostrarEstudiantesExistentes();
+                        echo "<select name='listEstudiantes'>";
+                        foreach ($estudiantesDisp as $estudiante) {
+                            $codigoEstudiante = $estudiante['cod_est'];
+                            $nombreCompleto = $estudiante['nombre'];
+                            $opcion = $codigoEstudiante . ' - ' . $nombreCompleto;
 
-                                echo "<option id='listEstudiante' value='" . $opcion . "'>" . $opcion . "</option>";
-                            }
-                            echo "</select>";
+                            echo "<option id='listEstudiante' value='" . $opcion . "'>" . $opcion . "</option>";
+                        }
+                        echo "</select>";
                         ?>
                         <button type="submit" id="addStudentButton">
                             <h2 class="textcontainer">Agregar</h2>
