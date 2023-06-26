@@ -26,12 +26,8 @@ $contador = 1;
                 <h2>Cursos</h2>
                 
             </div>
-            <button onclick="goBack()" id="back-button">Volver</button>
-            <script>
-            function goBack() {
-                history.back();
-            }
-            </script>
+            <button  id="back-button"><a href="../index.php">Volver</a></button>
+            
            
         </div>
         <table>

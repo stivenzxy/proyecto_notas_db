@@ -18,6 +18,9 @@ class cursosController extends Connection {
                 case 'verListado':
                     $this->verListado();
                     break;
+                case 'editarCurso':
+                    $this->editarCurso();
+                    break;
             }
         }
 
@@ -28,29 +31,24 @@ class cursosController extends Connection {
           $nomb_cur = isset($_GET['nomb_cur']) ? $_GET['nomb_cur'] : '';
 
           $this->editarCursoPre($cod_cur, $nomb_cur);
-
-      
-
         break;
-
     }
  }
 
     public function verListado() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $codigo_usr = $_POST['cod_usr'];
+            $codigo_usr = 100000000;
             $cursosList = $this->cursosModel->getCursos($codigo_usr, $this->connect);
             session_start();                  
             $_SESSION['cursosTotales']=$cursosList;
             $_SESSION['nombre']=$codigo_usr;
             if (count($cursosList) > 0) {
                 header("Location: ../views/tablaCursos.php"); 
-            } else {
-                header("Location: https://www.tomshardware.com/how-to/zip-files-in-linux");
-            }
+            } 
             exit(); // Se recomienda agregar exit() después de la redirección.
         }
     }
+
 
     public function editarCursoPre($cod_cur, $nomb_cur) {
         session_start();                  
@@ -62,18 +60,18 @@ class cursosController extends Connection {
     public function editarCurso() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $cod_cur= $_POST['cod_cur'];
-            $nomb_cur = $_POST['nomb_usr'];
+            $nomb_cur = $_POST['nomb_cur'];
+            $nomb_cur= trim($nomb_cur);
             try {
                 $this->cursosModel->setCurso($cod_cur, $nomb_cur, $this->connect);
-                header("Location: ../views/tablaCursos.php"); 
+                 $this->verListado();
             } 
             catch (Exception $e) {
                 echo 'Se ha producido una excepción: ' . $e->getMessage();
                 session_start();                  
                 $_SESSION['cod_cur']=$cod_cur;
-                 $_SESSION['nomb_cur']=$nomb_cur;
-                 header("Location: ../views/editarCurso.php"); 
-
+                 $_SESSION['nomb_cur']=$nomb_cur; 
+                 header("Location: ../views/editarCurso.php");
             }
         }
     }
