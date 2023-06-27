@@ -24,7 +24,7 @@ $contador = 1;
             <div class="header-container">
                 <h2>Cursos</h2>
             </div>
-            <button id="back-button"><a style="text-decoration:none; color:#fff;" href="../home.php">Inicio</a></button>
+            <button id="back-buttonc"><a style="text-decoration:none; color:#fff;" href="../home.php">Inicio</a></button>
         </div>
         <table>
             <thead>
@@ -32,7 +32,7 @@ $contador = 1;
                     <th>N°</th>
                     <th>Codigo</th>
                     <th>Nombre</th>
-                    <th>Acción</th>
+                    <th>Notas / Editar nombre</th>
                 </tr>
             </thead>
             <tbody id="tablaEstudiantes">
@@ -44,12 +44,12 @@ $contador = 1;
                     <td><?php echo $curso['nomb_curso']; ?></td>
                     <td>
                     <button class="tablaNotasButton">
-                            <i class="fa-solid fa-table"></i>   
+                        <a style="text-decoration:none; color:#fff;" href="tablaNotas.php"><!--<i class="fa-solid fa-table">-->Nota<!--</i>--></a>   
                     </button>
                         <button class="editarButton">   
-                        <a href="../controllers/cursosController.php?action=editarCursoPre&cod_cur=<?php 
+                        <a style="text-decoration:none; color:#fff;" href="../controllers/cursosController.php?action=editarCursoPre&cod_cur=<?php 
                         echo $curso['cod_curso']; ?>&nomb_cur=<?php echo $curso['nomb_curso']; ?>">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                           <!-- <i class="fa-solid fa-pen-to-square"></i>--> Editar
                         </a>  
                         </button>
                     </td>

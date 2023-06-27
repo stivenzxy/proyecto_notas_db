@@ -16,7 +16,7 @@ class cursosController extends Connection {
             $action = $_POST['action'] ?? '';
             switch ($action) {
                 case 'verListado':
-                    $this->verListado();
+                    $this->verListadoCursos();
                     break;
                 case 'editarCurso':
                     $this->editarCurso();
@@ -34,7 +34,7 @@ class cursosController extends Connection {
     }
  }
 
-    public function verListado() {
+    public function verListadoCursos() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $codigo_usr = 1001;
             $cursosList = $this->cursosModel->getCursos($codigo_usr, $this->connect);
@@ -64,7 +64,7 @@ class cursosController extends Connection {
             $nomb_cur= trim($nomb_cur);
             try {
                 $this->cursosModel->setCurso($cod_cur, $nomb_cur, $this->connect);
-                 $this->verListado();
+                 $this->verListadoCursos();
             } 
             catch (Exception $e) {
                 echo 'Se ha producido una excepción: ' . $e->getMessage();
@@ -89,5 +89,3 @@ class cursosController extends Connection {
 
 $cursosController = new cursosController();
 $cursosController->handleRequest();
-?>
-

@@ -33,7 +33,7 @@ ALTER TABLE inscripciones ADD CONSTRAINT fk_cursos FOREIGN KEY (cod_curso) REFER
 ALTER TABLE inscripciones ADD CONSTRAINT fk_estudiantes FOREIGN KEY (cod_est) REFERENCES estudiantes(cod_est) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 CREATE TABLE notas(
-	nota INT PRIMARY KEY NOT NULL, CHECK(nota>=0),
+	nota INT SERIAL PRIMARY KEY NOT NULL, CHECK(nota>=0),
 	descripcion VARCHAR(300),
 	porcentaje INT, CHECK(porcentaje>=0 AND porcentaje<=100),
 	posicion INT NOT NULL UNIQUE, CHECK(posicion>=0),
@@ -42,7 +42,7 @@ CREATE TABLE notas(
 ALTER TABLE notas ADD CONSTRAINT fk_cod_curso FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE calificaciones(
-	cod_cal INT,CHECK(cod_cal>=0),
+	cod_cal SERIAL,CHECK(cod_cal>=0),
 	valor REAL, CHECK(valor>=0),
 	fecha DATE NOT NULL,
 	cod_curso INT NOT NULL, CHECK(cod_curso>=0),

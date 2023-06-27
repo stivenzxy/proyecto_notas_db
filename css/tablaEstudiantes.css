@@ -57,6 +57,23 @@ body {
     background-color: #f9f0c6;
 }
 
+.table-header #back-buttonc {
+    outline: none;
+    border: none;
+    color: #ffffff;
+    background-color: rgba(255, 173, 8, 0.871);
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.table-header #back-buttonc:hover {
+    color: rgba(255, 173, 8, 0.871);
+    background-color: #685915;
+}
 
 .table-header #header-button {
     outline: none;
@@ -114,10 +131,10 @@ body {
     cursor: pointer;
 }
 
-.fa-edit:before, .fa-pen-to-square:before {
+/*.fa-edit:before, .fa-pen-to-square:before {
     content: "\f044";
     color: white;
-}
+}*/
 
 .container .delete-button:hover{
     color: #000000;

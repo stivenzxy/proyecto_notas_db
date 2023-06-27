@@ -1,0 +1,118 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+  
+h1 {
+  text-align: center;
+}
+  
+.notas-table {
+  margin-top: 20px;
+  overflow-x: auto;
+  position: relative;
+}
+  
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+  
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+  
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+  
+input.btn-agregar-nota {
+  width: 100%;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2b9632;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Estilos de los botones */
+.btn-editar {
+  background-color: rgba(255, 173, 8, 0.871);
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.btn-borrar {
+  background-color: #dd0319;
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.btn-registrar {
+  background-color: #5342c1;
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+  
+@media (max-width: 768px) {
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 5px;
+  }
+    
+  input.btn-agregar-nota {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+  
+.back-button {
+  outline: none;
+  border: none;
+  color: #ffffff;
+  background-color: rgba(255, 173, 8, 0.871);
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+.back-button:hover {
+  color: rgba(255, 173, 8, 0.871);
+  background-color: #a4810e;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor label {
+  margin-bottom: 5px;
+}
+
+.contenedor input {
+  margin-bottom: 10px;
+}
+
+.contenedor label:not(:last-child) {
+  margin-left: 80px;
+}
