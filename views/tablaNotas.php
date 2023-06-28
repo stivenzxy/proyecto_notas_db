@@ -15,8 +15,9 @@ if (isset($_GET['cod_curso'])) {
   <link rel="stylesheet" type="text/css" href="../css/notas.css">
 </head>
 <body>
+  <div class="container">
   <h1>CREAR NOTAS DE CURSO</h1>
-  <button class="back-button" id="back-button"><a style="text-decoration:none; color:#fff;" href="../home.php">Inicio</a></button>
+  <button class="back-button" id="back-button"><a style="text-decoration:none; color:#fff;" href="tablaCursos.php">Volver</a></button>
   <div class="notas-table">
     <table>
       <thead>
@@ -44,13 +45,14 @@ if (isset($_GET['cod_curso'])) {
           echo '<td>' . $nota['porcentaje'] . '</td>';
           echo '<td><a class="btn-editar" href="agregarNota.php?id=' . $nota['posicion'] . '">Editar</a></td>';
           echo '<td><a class="btn-borrar" href="borrar.php?id=' . $nota['posicion'] . '">Borrar</a></td>';
-          echo '<td><a class="btn-registrar" href="registrar.php?id=' . $nota['posicion'] . '">Registrar</a></td>';
+          echo '<td><a class="btn-registrar" href="calificaciones.php?id=' . $nota['posicion'] . '">Registrar</a></td>';
           echo '</tr>';
         }
         ?>
       </tbody>
     </table>
     <a href="agregarNota.php" class="btn-agregar-nota">Agregar Nota</a>
+  </div>
   </div>
 </body>
 </html>

@@ -1,0 +1,78 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 5px rgb(101, 101, 101);
+}
+  
+.students-table th {
+    color: #fff;
+    background-color: rgb(79, 61, 218);
+}
+
+.students-table th,
+.students-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+  
+.students-table th.codigo,
+.students-table th.nombre,
+.students-table th.nota{
+    text-align: center;
+}
+
+.nota-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: initial
+}
+  
+.nota-input {
+    width: 60px;
+}
+  
+.acciones-nota {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+  
+.editar-nota {
+    font-size: 16px;
+    color: #f3e22d;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.guardar-nota {
+    font-size: 16px;
+    color: #178c02;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.eliminar-nota {
+    font-size: 16px;
+    color: #df1616;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.textTd{
+    text-align: center;
+}

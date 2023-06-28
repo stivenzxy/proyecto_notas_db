@@ -6,7 +6,7 @@ class Nota {
     }
 
     public function getNotas($codigo,$connect){
-        $query = 'SELECT * FROM notas WHERE cod_curso = :cod_curso';
+        $query = 'SELECT * FROM notas WHERE cod_curso = :cod_curso ORDER BY posicion ASC';
         $stmt = $connect->prepare($query);
         $stmt->bindParam(':cod_curso', $codigo);
         $stmt->execute();

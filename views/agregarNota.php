@@ -12,7 +12,7 @@ $codigo = $_SESSION['cod_curso'];
 
 <body>
     <div class="contenedor">
-        <form action="../controllers/AgregarNotas.php" method="POST">
+        <form action="../controllers/AgregarNotasController.php" method="POST">
             <div class="form-details">
                 <input type="hidden" name="cod_curso" value="<?php echo $codigo ?>">
                 <br>
@@ -29,7 +29,7 @@ $codigo = $_SESSION['cod_curso'];
             <input type="submit" name="submit" value="Guardar">
             <!--<button><?php echo $codigo ?></button>-->
         </form>
-        <button class="back-button" id="back-button" style="margin-top:30%; position:fixed;" onclick="window.history.back()">Volver</button>
+        <button class="back-button" id="back-button" style="margin-top:30%; color:#fff; position:fixed;" onclick="window.history.back()">Volver</button>
     </div>
 </body>
 
