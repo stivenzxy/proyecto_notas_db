@@ -33,12 +33,13 @@ ALTER TABLE inscripciones ADD CONSTRAINT fk_cursos FOREIGN KEY (cod_curso) REFER
 ALTER TABLE inscripciones ADD CONSTRAINT fk_estudiantes FOREIGN KEY (cod_est) REFERENCES estudiantes(cod_est) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 CREATE TABLE notas(
-	nota INT SERIAL PRIMARY KEY NOT NULL, CHECK(nota>=0),
+	nota SERIAL PRIMARY KEY NOT NULL, CHECK(nota>=0),
 	descripcion VARCHAR(300),
 	porcentaje INT, CHECK(porcentaje>=0 AND porcentaje<=100),
-	posicion INT NOT NULL UNIQUE, CHECK(posicion>=0),
+	posicion INT NOT NULL, CHECK(posicion>=0),
 	cod_curso INT NOT NULL, CHECK(cod_curso>=0)
 );
+
 ALTER TABLE notas ADD CONSTRAINT fk_cod_curso FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE calificaciones(
@@ -55,11 +56,6 @@ CREATE TABLE calificaciones(
 ALTER TABLE calificaciones ADD CONSTRAINT pk_calificaciones PRIMARY KEY(cod_cal,cod_curso,cod_est,periodo,anio,nota);
 ALTER TABLE calificaciones ADD CONSTRAINT fk_inscripciones_cal FOREIGN KEY (cod_curso,cod_est,periodo,anio) REFERENCES inscripciones(cod_curso,cod_est,periodo,anio) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE calificaciones ADD CONSTRAINT fk_notas_cal FOREIGN KEY (nota) REFERENCES notas(nota) ON DELETE CASCADE ON UPDATE CASCADE;
-
-COPY estudiantes(cod_est,nomb1_est,nomb2_est,ape_paterno,ape_materno) FROM '/tmp/estudiantes.csv' DELIMITER ',' CSV HEADER;
-COPY cursos(cod_curso,nomb_curso,codigo_usr) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
-COPY inscripciones(cod_curso,cod_est,anio,periodo) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
-
 
 CREATE extension pgcrypto;
 
@@ -91,5 +87,7 @@ $$ LANGUAGE plpgsql;
 
 SELECT adduser(1001,'Jesus','','Reyes','Carvajal','12345');
 
-
+COPY estudiantes(cod_est,nomb1_est,nomb2_est,ape_paterno,ape_materno) FROM '/tmp/estudiantes.csv' DELIMITER ',' CSV HEADER;
+COPY cursos(cod_curso,nomb_curso,codigo_usr) FROM '/tmp/cursos.csv' DELIMITER ',' CSV HEADER;
+COPY inscripciones(cod_curso,cod_est,anio,periodo) FROM '/tmp/inscripciones.csv' DELIMITER ',' CSV HEADER;
 

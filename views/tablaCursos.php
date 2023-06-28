@@ -7,6 +7,7 @@ $contador = 1;
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@ $contador = 1;
     <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.css">
     <title>Cursos de docente</title>
 </head>
+
 <body>
     <div class="container">
         <div class="table-header">
@@ -36,31 +38,29 @@ $contador = 1;
                 </tr>
             </thead>
             <tbody id="tablaEstudiantes">
-                <?php 
+                <?php
                 foreach ($cursosTotales as $curso) { ?>
-                <tr>
-                    <td><?php echo $contador++; ?></td>
-                    <td><?php echo $curso['cod_curso']; ?></td>
-                    <td><?php echo $curso['nomb_curso']; ?></td>
-                    <td>
-                    <button class="tablaNotasButton">
-                        <a style="text-decoration:none; color:#fff;" href="tablaNotas.php"><!--<i class="fa-solid fa-table">-->Nota<!--</i>--></a>   
-                    </button>
-                        <button class="editarButton">   
-                        <a style="text-decoration:none; color:#fff;" href="../controllers/cursosController.php?action=editarCursoPre&cod_cur=<?php 
-                        echo $curso['cod_curso']; ?>&nomb_cur=<?php echo $curso['nomb_curso']; ?>">
-                           <!-- <i class="fa-solid fa-pen-to-square"></i>--> Editar
-                        </a>  
-                        </button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo $contador++; ?></td>
+                        <td><?php echo $curso['cod_curso']; ?></td>
+                        <td><?php echo $curso['nomb_curso']; ?></td>
+                        <td>
+                            <button class="tablaNotasButton">
+                                <a style="text-decoration:none; color:#fff;" href="tablaNotas.php?cod_curso=<?php echo urlencode($curso['cod_curso']); ?>">Nota</a>
+                            </button>
+                            <button class="editarButton">
+                                <a style="text-decoration:none; color:#fff;" href="../controllers/cursosController.php?action=editarCursoPre&cod_cur=<?php
+                                                                                                                                                        echo $curso['cod_curso']; ?>&nomb_cur=<?php echo $curso['nomb_curso']; ?>">
+                                    <!-- <i class="fa-solid fa-pen-to-square"></i>--> Editar
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>
-    
+
     </div>
 </body>
 
 </html>
-
-
