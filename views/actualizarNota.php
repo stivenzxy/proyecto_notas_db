@@ -22,12 +22,12 @@ $codigo = $_SESSION['cod_curso'];
                 <label for="porcentaje">Ingrese el porcentaje:</label>
                 <input type="text" name="porcentaje" placeholder="Porcentaje" required>
                 <br>
-                <label for="posicion">Ingrese la posición:</label>
+                <label for="posicion">Ingrese la posición de la nota a actualizar:</label>
                 <input type="text" name="posicion" placeholder="Posición" required>
                 <br><br>
             </div>
-            <input type="submit" name="submit" value="Guardar">
-            <input type="hidden" name="action" value="agregarNota">
+            <input type="submit" name="submit" value="Actualizar">
+            <input type="hidden" name="action" value="actualizarNota">
             <!--<button><?php echo $codigo ?></button>-->
         </form>
         <button class="back-button" id="back-button" style="margin-top:30%; color:#fff; position:fixed;" onclick="window.history.back()">Volver</button>

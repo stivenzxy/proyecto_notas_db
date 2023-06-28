@@ -1,3 +1,14 @@
+<?php 
+session_start();
+$cod_curso = $_SESSION['cod_curso'];
+
+require('../controllers/AgregarNotasController.php');
+
+$class = new AgregarNotas();
+$class->getNombreCurso($cod_curso);
+$nombreCurso = $class->getNombreCurso($cod_curso);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,7 +34,7 @@
             day = date.getDate();
             document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
             </script>
-            <h2>Curso: </h2>
+            <h2>Curso: <?php echo $nombreCurso ?></h2>
     <thead>
       <tr>
         <th class="codigo">Código</th>

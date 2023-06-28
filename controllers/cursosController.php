@@ -52,8 +52,8 @@ class cursosController extends Connection {
     public function editarCursoPre($cod_cur, $nomb_cur) {
         session_start();                  
         $_SESSION['cod_cur']=$cod_cur;
-         $_SESSION['nomb_cur']=$nomb_cur;
-         header("Location: ../views/editarCurso.php"); 
+        $_SESSION['nomb_cur']=$nomb_cur;
+        header("Location: ../views/editarCurso.php"); 
     }
 
     
